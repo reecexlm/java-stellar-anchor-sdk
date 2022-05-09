@@ -33,6 +33,7 @@ public class GetTransactionsRequest {
     r.limit = limit;
     r.noOlderThan = noOlderThan;
     r.pagingId = pagingId;
+    r.lang = lang;
     return r;
   }
 }

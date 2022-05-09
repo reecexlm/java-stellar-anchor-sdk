@@ -303,9 +303,9 @@ internal class Sep24ServiceTest {
   @ValueSource(strings = ["deposit", "withdrawal"])
   fun testFindTransactions(kind: String) {
     every { txnStore.findTransactions(TEST_ACCOUNT, any()) } returns createTestTransactions(kind)
-    val gtr =
+    var gtr =
       GetTransactionsRequest.of(TEST_ASSET, kind, 10, "2021-12-20T19:30:58+00:00", "1", "en-US")
-    val response = sep24Service.findTransactions(createJwtToken(), gtr)
+    var response = sep24Service.findTransactions(createJwtToken(), gtr)
 
     assertEquals(response.transactions.size, 2)
     assertEquals(response.transactions[0].id, TEST_TRANSACTION_ID_0)
@@ -313,12 +313,19 @@ internal class Sep24ServiceTest {
     assertEquals(response.transactions[0].kind, kind)
     assertEquals(response.transactions[0].startedAt, DateUtil.toISO8601UTC(1000))
     assertEquals(response.transactions[0].completedAt, DateUtil.toISO8601UTC(2000))
+    assertNull(response.transactions[0].moreInfoUrl)
 
     assertEquals(response.transactions[1].id, TEST_TRANSACTION_ID_1)
     assertEquals(response.transactions[1].status, "completed")
     assertEquals(response.transactions[1].kind, kind)
     assertEquals(response.transactions[1].startedAt, DateUtil.toISO8601UTC(1000))
     assertEquals(response.transactions[1].completedAt, DateUtil.toISO8601UTC(2000))
+    assertTrue(response.transactions[1].moreInfoUrl.contains("lang=en-US"))
+
+    gtr = GetTransactionsRequest.of(TEST_ASSET, kind, 10, "2021-12-20T19:30:58+00:00", "1", null)
+    response = sep24Service.findTransactions(createJwtToken(), gtr)
+    assertEquals(response.transactions[1].status, "completed")
+    assertFalse(response.transactions[1].moreInfoUrl.contains("lang="))
   }
 
   @ParameterizedTest
@@ -347,10 +354,11 @@ internal class Sep24ServiceTest {
   @ParameterizedTest
   @ValueSource(strings = ["deposit", "withdrawal"])
   fun testFindTransaction(kind: String) {
-    every { txnStore.findByTransactionId(any()) } returns createTestTransaction(kind)
+    var testTxn = createTestTransaction(kind)
+    every { txnStore.findByTransactionId(any()) } returns testTxn
 
     var gtr = GetTransactionRequest(TEST_TRANSACTION_ID_0, null, null, "en-US")
-    val response = sep24Service.findTransaction(createJwtToken(), gtr)
+    var response = sep24Service.findTransaction(createJwtToken(), gtr)
 
     assertEquals(response.transaction.id, TEST_TRANSACTION_ID_0)
     assertEquals(response.transaction.status, "incomplete")
@@ -358,6 +366,15 @@ internal class Sep24ServiceTest {
     assertEquals(response.transaction.startedAt, DateUtil.toISO8601UTC(1000))
     assertEquals(response.transaction.completedAt, DateUtil.toISO8601UTC(2000))
     verify(exactly = 1) { txnStore.findByTransactionId(TEST_TRANSACTION_ID_0) }
+
+    // Test with completed status
+    testTxn = createTestTransaction(kind)
+    testTxn.status = "completed"
+
+    every { txnStore.findByTransactionId(any()) } returns testTxn
+    response = sep24Service.findTransaction(createJwtToken(), gtr)
+    assertEquals(response.transaction.status, "completed")
+    assertTrue(response.transaction.moreInfoUrl.contains("lang=en-US"))
 
     // test with stellar transaction Id
     every { txnStore.findByStellarTransactionId(any()) } returns createTestTransaction("deposit")
