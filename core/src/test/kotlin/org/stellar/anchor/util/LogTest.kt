@@ -8,6 +8,7 @@ import org.junit.jupiter.api.*
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.slf4j.Logger
+import org.stellar.anchor.config.PII
 import org.stellar.anchor.util.Log.gson
 import org.stellar.anchor.util.Log.shorter
 
@@ -32,6 +33,12 @@ internal class LogTest {
   class TestBean {
     val field1: String = "1"
     val field2: String = "2"
+  }
+
+  @Suppress("unused")
+  class TestBeanPII {
+    @PII
+    val fieldPII: String = "secret"
   }
 
   @Test
@@ -64,6 +71,12 @@ internal class LogTest {
     val testBean = TestBean()
     Log.infoB("Hello", testBean)
     verify(exactly = 2) { logger.info(ofType(String::class)) }
+
+    val testBeanPII = TestBeanPII()
+    Log.infoB("Hello", testBeanPII)
+    verify(exactly = 1) { logger.info(ofType(String::class)) }
+
+
   }
 
   @Test

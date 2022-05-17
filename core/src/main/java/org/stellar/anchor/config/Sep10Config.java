@@ -13,6 +13,7 @@ public interface Sep10Config {
 
   Integer getAuthTimeout();
 
+  @Secret
   Integer getJwtTimeout();
 
   List<String> getClientAttributionDenyList();

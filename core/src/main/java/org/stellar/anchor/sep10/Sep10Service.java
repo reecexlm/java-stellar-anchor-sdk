@@ -1,8 +1,5 @@
 package org.stellar.anchor.sep10;
 
-import static org.stellar.anchor.util.Log.infoF;
-import static org.stellar.anchor.util.Log.shorter;
-
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -24,6 +21,8 @@ import org.stellar.sdk.*;
 import org.stellar.sdk.requests.ErrorResponse;
 import org.stellar.sdk.responses.AccountResponse;
 
+import static org.stellar.anchor.util.Log.*;
+
 /** The Sep-10 protocol service. */
 public class Sep10Service {
   final AppConfig appConfig;
@@ -34,14 +33,20 @@ public class Sep10Service {
 
   public Sep10Service(
       AppConfig appConfig, Sep10Config sep10Config, Horizon horizon, JwtService jwtService) {
+    infoF("Creating Sep10Service");
+    infoConfig("appConfig:", appConfig, AppConfig.class);
     this.appConfig = appConfig;
+
+    infoConfig("sep10Config:", sep10Config, Sep10Config.class);
     this.sep10Config = sep10Config;
+
     this.horizon = horizon;
     this.jwtService = jwtService;
     this.serverAccountId = KeyPair.fromSecretSeed(sep10Config.getSigningSeed()).getAccountId();
   }
 
   public ChallengeResponse createChallenge(ChallengeRequest challengeRequest) throws SepException {
+    info("Creating challenge");
     //
     // Validations
     //

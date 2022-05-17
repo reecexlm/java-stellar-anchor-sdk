@@ -6,8 +6,13 @@ import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.stellar.anchor.config.PII;
+import org.stellar.anchor.config.Secret;
 
 /** Logging utility functions. */
 public class Log {
@@ -50,6 +55,10 @@ public class Log {
       beanInfo = Introspector.getBeanInfo(detail.getClass());
       PropertyDescriptor[] pds = beanInfo.getPropertyDescriptors();
       for (PropertyDescriptor pd : pds) {
+        Field field = detail.getClass().getDeclaredField(pd.getName());
+        if (field.isAnnotationPresent(PII.class) || pd.getReadMethod().isAnnotationPresent(PII.class)) {
+          continue;
+        }
         Object value = pd.getReadMethod().invoke(detail);
         sb.append(String.format("'%s': '%s'\n", pd.getName(), value));
       }
@@ -59,6 +68,36 @@ public class Log {
       logger.info("Unable to serialize the bean.");
     }
   }
+
+  /**
+   * Send msg and configuration object as INFO log.
+   *
+   * @param msg the message.
+   * @param config the configuration to be logged.
+   */
+  public static void infoConfig(final String msg, final Object config, final Class<?> configClazz) {
+    Logger logger = getLogger();
+    logger.info(msg);
+    try {
+      StringBuilder sb = new StringBuilder("{");
+      Method[] methods = configClazz.getMethods();
+      for (int i = 0; i < methods.length; i++) {
+        Method method = methods[i];
+        if (!method.isAnnotationPresent(Secret.class)) {
+          Object result = method.invoke(config);
+          sb.append(String.format("'%s': '%s'", method.getName(), result));
+          if (i != methods.length - 1) {
+            sb.append(",");
+          }
+        }
+      }
+      sb.append("}");
+      logger.info(sb.toString());
+    } catch (Exception e) {
+      logger.info("Unable to serialize the bean.");
+    }
+  }
+
 
   /**
    * Send INFO log with format.
