@@ -19,7 +19,7 @@ data "kubernetes_ingress" "ref_ingress" {
     name = "reference-server-ingress"
   }
   depends_on = [
-      resource.helm_release.reference
+      resource.helm_release.sep
   ]
 }
 resource "aws_route53_record" "sep" {
