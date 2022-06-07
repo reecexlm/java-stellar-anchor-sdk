@@ -19,7 +19,7 @@ data "kubernetes_ingress" "ref_ingress" {
     name = "reference-server-ingress"
   }
   depends_on = [
-      resource.helm_release.sep
+      resource.helm_release.reference
   ]
 }
 resource "aws_route53_record" "sep" {
@@ -29,8 +29,7 @@ resource "aws_route53_record" "sep" {
   ttl     = "300"
   records = [data.kubernetes_ingress.sep_ingress.status.0.load_balancer.0.ingress.0.hostname]
   depends_on = [
-    helm_release.sep
-  ]
+    helm_release.sep]
 }
 
 resource "aws_route53_record" "ref" {
@@ -40,7 +39,7 @@ resource "aws_route53_record" "ref" {
   ttl     = "300"
   #records = [data.kubernetes_service.ref_service.status.0.load_balancer.0.ingress.0.hostname]
   records = [data.kubernetes_ingress.ref_ingress.status.0.load_balancer.0.ingress.0.hostname]
-    depends_on = [
-    helm_release.sep
+  depends_on = [
+      resource.helm_release.reference
   ]
 }
