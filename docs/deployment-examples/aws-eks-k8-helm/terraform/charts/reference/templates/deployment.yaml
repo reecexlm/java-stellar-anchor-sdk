@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: reference
-        image: stellar/anchor-platform:9cea0d1
+        image: stellar/anchor-platform:9d4eac8
         args: ["--anchor-reference-server"]
         imagePullPolicy: Always
         ports:
