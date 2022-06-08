@@ -15,7 +15,8 @@ data "kubernetes_ingress" "reference" {
 }
 locals {
   s_template_vars = {
-    sep_endpoint = data.kubernetes_ingress.sep.status.0.load_balancer.0.ingress.0.hostname
+    #sep_endpoint = data.kubernetes_ingress.sep.status.0.load_balancer.0.ingress.0.hostname
+    sep_endpoint = "abc.com"
   }
   sep_template_vars = {
     reference_endpoint = data.kubernetes_ingress.reference.status.0.load_balancer.0.ingress.0.hostname
