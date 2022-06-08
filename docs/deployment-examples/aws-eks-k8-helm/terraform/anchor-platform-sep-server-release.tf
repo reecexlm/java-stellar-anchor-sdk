@@ -35,6 +35,6 @@ resource "helm_release" "sep" {
 
     values = [templatefile("${path.module}/anchor-platform-sep-server-values.yaml",
     local.sep_template_vars)]
-    depends_on = [resource.helm_release.ingress-nginx, resource.helm_relase.reference]
+    depends_on = [resource.helm_release.ingress-nginx, resource.helm_release.reference]
 }
 
