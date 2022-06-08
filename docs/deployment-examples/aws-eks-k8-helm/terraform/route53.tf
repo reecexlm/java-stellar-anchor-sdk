@@ -22,6 +22,7 @@ data "kubernetes_ingress" "ref_ingress" {
       resource.helm_release.reference
   ]
 }
+
 resource "aws_route53_record" "sep" {
   zone_id = data.aws_route53_zone.anchor-zone.zone_id
   name    = "www.${data.aws_route53_zone.anchor-zone.name}"
