@@ -15,12 +15,12 @@ data "kubernetes_ingress" "reference" {
 }
 locals {
   s_template_vars = {
-    #sep_endpoint = data.kubernetes_ingress.sep.status.0.load_balancer.0.ingress.0.hostname
-    sep_endpoint = "abc.com"
+    sep_endpoint = data.kubernetes_ingress.sep.status.0.load_balancer.0.ingress.0.hostname
+    #sep_endpoint = "abc.com"
   }
   sep_template_vars = {
-    #reference_endpoint = data.kubernetes_ingress.reference.status.0.load_balancer.0.ingress.0.hostname
-    reference_endpoint = "abc.com"
+    reference_endpoint = data.kubernetes_ingress.reference.status.0.load_balancer.0.ingress.0.hostname
+    #reference_endpoint = "abc.com"
     #bootstrap_broker = "${element(split(",", data.aws_msk_cluster.anchor_msk.bootstrap_brokers), 0)}"
   }
 }
