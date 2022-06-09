@@ -256,7 +256,7 @@ resource "aws_iam_role_policy_attachment" "amazon_eks_cluster_policy" {
 
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
-  version = "18.20.5"
+  version = "17.0.0"
 
   cluster_name    = "${local.cluster_name}"
   cluster_endpoint_private_access = true
