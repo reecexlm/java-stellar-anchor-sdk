@@ -24,8 +24,8 @@ resource "aws_route53_record" "sep" {
   name    = "www.${data.aws_route53_zone.anchor-zone.name}"
   type    = "CNAME"
   ttl     = "300"
-  records = [data.kubernetes_ingress.sep.status.0.load_balancer.0.ingress.0.hostname]
-  #records = ["abc.com"]
+  #records = [data.kubernetes_ingress.sep.status.0.load_balancer.0.ingress.0.hostname]
+  records = ["abc.com"]
 }
 
 resource "aws_route53_record" "ref" {
