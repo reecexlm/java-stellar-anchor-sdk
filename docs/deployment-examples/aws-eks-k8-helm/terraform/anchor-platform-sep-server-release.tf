@@ -1,10 +1,4 @@
-data "kubernetes_ingress" "sep" {
-  metadata {
-    name = "sep-server-ingress"
-    namespace = "anchor-platform"
-  }
-  depends_on = [resource.helm_release.sep] 
-}
+
 
 locals {
   s_template_vars = {
