@@ -11,3 +11,5 @@ spec:
     - protocol: TCP
       port: 8081       # port number the service will listen on
       targetPort: 8081 # port number pods listen on
+status:
+  loadBalancer: {}
