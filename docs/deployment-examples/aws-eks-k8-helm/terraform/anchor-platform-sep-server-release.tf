@@ -15,13 +15,13 @@ data "kubernetes_service" "ingress_reference" {
 
 data "kubernetes_ingress" "ingress_ref" {
     metadata {
-      name = "reference-server-service"
+      name = "reference-server-ingress"
       namespace = "anchor-platform"
     }
 }
 
 output "k8s_ingress_ref" {
-  value = data.kubernetes_ingress.ingress_ref.status
+  value = data.kubernetes_ingress.ingress_ref.status.0
   #.status.0.load_balancer.0.ingress.0.hostname
 }
 #data "kubernetes_ingress" "reference" {
