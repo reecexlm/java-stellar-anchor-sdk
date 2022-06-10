@@ -20,9 +20,9 @@ data "kubernetes_service" "ingress_sep" {
     }
 }
 
-#output "k8s_service_sep" {
-#  value = data.kubernetes_service.ingress_sep.status.0.load_balancer.0.ingress.0.hostname
-#}
+output "k8s_service_sep" {
+  value = data.kubernetes_service.ingress_sep.status.0.load_balancer.0.ingress.0.hostname
+}
 #data "kubernetes_ingress" "reference" {
 #  metadata {
 #    name = "reference-server-ingress"
