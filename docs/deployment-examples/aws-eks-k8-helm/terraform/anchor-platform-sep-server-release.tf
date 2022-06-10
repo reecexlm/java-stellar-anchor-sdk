@@ -15,7 +15,7 @@ data "kubernetes_service" "ingress_reference" {
 
 data "kubernetes_service" "ingress_sep" {
     metadata {
-      name = "reference-server-service"
+      name = "sep-server-service"
       namespace = "anchor-platform"
     }
 }
