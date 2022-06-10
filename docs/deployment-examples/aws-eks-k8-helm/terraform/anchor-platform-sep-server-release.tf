@@ -21,8 +21,8 @@ data "kubernetes_ingress" "ingress_ref" {
 }
 
 output "k8s_ingress_ref" {
-  value = data.kubernetes_ingress.ingress_ref.status.0
-  #.status.0.load_balancer.0.ingress.0.hostname
+  value = data.kubernetes_ingress.ingress_ref.status
+  
 }
 #data "kubernetes_ingress" "reference" {
 #  metadata {
