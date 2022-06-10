@@ -23,6 +23,23 @@ data "kubernetes_ingress" "ref_ingress" {
   ]
 }
 
+output "ref_service.status_0_load_balancer_0_ingress_0_hostname" {
+  value = data.kubernetes_service.ref_service.status.0.load_balancer.0.ingress.0.hostname
+}
+
+output "ref_service.status_0_load_balancer_0_ingress_0" {
+  value = data.kubernetes_service.ref_service.status.0.load_balancer.0.ingress.0
+}
+
+output "ref_service.status_0_load_balancer_0_ingress" {
+  value = data.kubernetes_service.ref_service.status.0.load_balancer.0.ingress
+}
+
+output "ref_service.status_0_load_balancer_0" {
+  value = data.kubernetes_service.ref_service.status.0.load_balancer.0
+}
+
+
 resource "aws_route53_record" "sep" {
   zone_id = data.aws_route53_zone.anchor-zone.zone_id
   name    = "www.${data.aws_route53_zone.anchor-zone.name}"
@@ -39,6 +56,6 @@ resource "aws_route53_record" "ref" {
   ttl     = "300"
   #records = [data.kubernetes_service.ref_service.status.0.load_balancer.0.ingress.0.hostname]
   #records = [data.kubernetes_ingress.ref_ingress.status.0.load_balancer.0.ingress.0.hostname]
-  #records = ["abc.com"]
-  records = [data.kubernetes_ingress.ref_ingress.load_balancer_ingress.0.hostname]
+  records = ["abc.com"]
+  #records = [data.kubernetes_ingress.ref_ingress.load_balancer_ingress.0.hostname]
 }
