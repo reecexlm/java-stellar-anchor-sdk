@@ -3,6 +3,7 @@ kind: Ingress
 metadata:
   name: {{ .Release.Name }}-ingress
   namespace: anchor-platform
+  wait: true
   annotations:
     alb.ingress.kubernetes.io/scheme: internal
     alb.ingress.kubernetes.io/healthcheck-path: /health

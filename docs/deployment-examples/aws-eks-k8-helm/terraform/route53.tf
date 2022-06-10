@@ -38,6 +38,6 @@ resource "aws_route53_record" "ref" {
   type    = "CNAME"
   ttl     = "300"
   #records = [data.kubernetes_service.ref_service.status.0.load_balancer.0.ingress.0.hostname]
-  records = [data.kubernetes_ingress.ref_ingress.status.0.load_balancer.0.ingress.0.hostname]
-  #records = ["abc.com"]
+  #records = [data.kubernetes_ingress.ref_ingress.status.0.load_balancer.0.ingress.0.hostname]
+  records = ["abc.com"]
 }
