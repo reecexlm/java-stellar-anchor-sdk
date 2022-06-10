@@ -23,19 +23,19 @@ data "kubernetes_ingress" "ref_ingress" {
   ]
 }
 
-output "ref_service.status_0_load_balancer_0_ingress_0_hostname" {
+output "ref1" {
   value = data.kubernetes_service.ref_service.status.0.load_balancer.0.ingress.0.hostname
 }
 
-output "ref_service.status_0_load_balancer_0_ingress_0" {
+output "ref2" {
   value = data.kubernetes_service.ref_service.status.0.load_balancer.0.ingress.0
 }
 
-output "ref_service.status_0_load_balancer_0_ingress" {
+output "ref3" {
   value = data.kubernetes_service.ref_service.status.0.load_balancer.0.ingress
 }
 
-output "ref_service.status_0_load_balancer_0" {
+output "ref4" {
   value = data.kubernetes_service.ref_service.status.0.load_balancer.0
 }
 
