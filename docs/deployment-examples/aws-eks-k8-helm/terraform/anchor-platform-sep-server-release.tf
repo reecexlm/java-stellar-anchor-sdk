@@ -21,7 +21,8 @@ data "kubernetes_service" "ingress_ref" {
 }
 
 output "k8s_service_ref" {
-  value = data.kubernetes_service.ingress_ref.status.0.load_balancer.0.ingress.0.hostname
+  value = data.kubernetes_service.ingress_ref.name
+  #.status.0.load_balancer.0.ingress.0.hostname
 }
 #data "kubernetes_ingress" "reference" {
 #  metadata {
