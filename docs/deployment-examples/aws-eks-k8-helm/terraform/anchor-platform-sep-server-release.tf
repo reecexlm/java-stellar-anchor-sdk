@@ -13,8 +13,15 @@ data "kubernetes_service" "ingress_reference" {
     }
 }
 
-output "k8s_service_reference" {
-  value = data.kubernetes_service.ingress_reference.status.0.load_balancer.0.ingress.0.hostname
+data "kubernetes_service" "ingress_sep" {
+    metadata {
+      name = "reference-server-service"
+      namespace = "anchor-platform"
+    }
+}
+
+output "k8s_service_sep" {
+  value = data.kubernetes_service.ingress_sep.status.0.load_balancer.0.ingress.0.hostname
 }
 #data "kubernetes_ingress" "reference" {
 #  metadata {
