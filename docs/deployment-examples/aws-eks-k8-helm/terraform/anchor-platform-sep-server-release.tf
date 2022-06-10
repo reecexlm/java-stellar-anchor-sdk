@@ -6,13 +6,14 @@ data "kubernetes_ingress" "sep" {
   depends_on = [resource.helm_release.sep] 
 }
 
-data "kubernetes_ingress" "reference" {
-  metadata {
-    name = "reference-server-ingress"
-    namespace = "anchor-platform"
-  }
-  depends_on = [resource.helm_release.reference]
-}
+#data "kubernetes_ingress" "reference" {
+#  metadata {
+#    name = "reference-server-ingress"
+#    namespace = "anchor-platform"
+#  }
+#  depends_on = [resource.helm_release.reference]
+#}
+
 locals {
   s_template_vars = {
     sep_endpoint = data.kubernetes_ingress.sep.status.0.load_balancer.0.ingress.0.hostname
