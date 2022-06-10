@@ -23,23 +23,6 @@ data "kubernetes_ingress" "ref_ingress" {
   ]
 }
 
-output "ref1" {
-  value = data.kubernetes_ingress.ref_ingress.status.0.load_balancer.0.ingress.0.hostname
-}
-
-output "ref2" {
-  value = data.kubernetes_ingress.ref_ingress.status.0.load_balancer.0.ingress.0
-}
-
-output "ref3" {
-  value = data.kubernetes_ingress.ref_ingress.status.0
-}
-
-output "ref4" {
-  value = data.kubernetes_ingress.ref_ingress.status.0.load_balancer.0
-}
-
-
 resource "aws_route53_record" "sep" {
   zone_id = data.aws_route53_zone.anchor-zone.zone_id
   name    = "www.${data.aws_route53_zone.anchor-zone.name}"
