@@ -6,41 +6,14 @@ data "kubernetes_ingress" "sep" {
   depends_on = [resource.helm_release.sep] 
 }
 
-data "kubernetes_service" "ingress_service" {
-    metadata {
-      name = "reference-server-service"
-      namespace = "anchor-platform"
-    }
-}
-
-data "kubernetes_service" "service_ref" {
-    metadata {
-      name = "reference-server-service"
-      namespace = "anchor-platform"
-    }
-    depends_on = [helm_release.reference]
-}
-
-output "k8s_ingress_ref" {
-  value = data.kubernetes_service.ingress_service.status
-  
-}
-#data "kubernetes_ingress" "reference" {
-#  metadata {
-#    name = "reference-server-ingress"
-#    namespace = "anchor-platform"
-#  }
-#  depends_on = [resource.helm_release.reference]
-#}
-
 locals {
   s_template_vars = {
-    #sep_endpoint = data.kubernetes_ingress.sep.status.0.load_balancer.0.ingress.0.hostname
-    sep_endpoint = "abc.com"
+    sep_endpoint = data.kubernetes_ingress.sep.status.0.load_balancer.0.ingress.0.hostname
+    #sep_endpoint = "abc.com"
   }
   sep_template_vars = {
-    #reference_endpoint = data.kubernetes_ingress.reference.status.0.load_balancer.0.ingress.0.hostname
-    reference_endpoint = "abc.com"
+    #\reference_endpoint = data.kubernetes_ingress.reference.status.0.load_balancer.0.ingress.0.hostname
+    #reference_endpoint = "abc.com"
     #bootstrap_broker = "${element(split(",", data.aws_msk_cluster.anchor_msk.bootstrap_brokers), 0)}"
   }
 }
