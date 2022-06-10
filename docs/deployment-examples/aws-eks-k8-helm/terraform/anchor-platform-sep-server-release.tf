@@ -13,15 +13,16 @@ data "kubernetes_service" "ingress_reference" {
     }
 }
 
-data "kubernetes_ingress" "ingress_ref" {
+data "kubernetes_service" "service_ref" {
     metadata {
-      name = "reference-server-ingress"
+      name = "reference-server-service"
       namespace = "anchor-platform"
     }
+    depends_on = [helm_release.reference]
 }
 
 output "k8s_ingress_ref" {
-  value = data.kubernetes_ingress.ingress_ref.status
+  value = data.kubernetes_service.ingress_service.status
   
 }
 #data "kubernetes_ingress" "reference" {
