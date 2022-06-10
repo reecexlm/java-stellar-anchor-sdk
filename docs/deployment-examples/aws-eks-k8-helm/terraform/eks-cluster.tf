@@ -56,16 +56,17 @@ resource "aws_iam_policy" "elb_controller_policy" {
             "ec2:DescribeTags",
             "ec2:GetCoipPoolUsage",
             "ec2:DescribeCoipPools",
-            "elasticloadbalancing:DescribeLoadBalancers",
-            "elasticloadbalancing:DescribeLoadBalancerAttributes",
-            "elasticloadbalancing:DescribeListeners",
-            "elasticloadbalancing:DescribeListenerCertificates",
-            "elasticloadbalancing:DescribeSSLPolicies",
-            "elasticloadbalancing:DescribeRules",
-            "elasticloadbalancing:DescribeTargetGroups",
-            "elasticloadbalancing:DescribeTargetGroupAttributes",
-            "elasticloadbalancing:DescribeTargetHealth",
-            "elasticloadbalancing:DescribeTags"
+            "elasticloadbalancing:*"
+            #"elasticloadbalancing:DescribeLoadBalancers",
+            #"elasticloadbalancing:DescribeLoadBalancerAttributes",
+            #"elasticloadbalancing:DescribeListeners",
+            #"elasticloadbalancing:DescribeListenerCertificates",
+            #"elasticloadbalancing:DescribeSSLPolicies",
+            #"elasticloadbalancing:DescribeRules",
+            #"elasticloadbalancing:DescribeTargetGroups",
+            #"elasticloadbalancing:DescribeTargetGroupAttributes",
+            #"elasticloadbalancing:DescribeTargetHealth",
+            #"elasticloadbalancing:DescribeTags"
          ],
          "Resource":"*"
       },
