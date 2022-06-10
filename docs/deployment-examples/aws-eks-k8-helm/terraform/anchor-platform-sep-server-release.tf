@@ -6,7 +6,7 @@ data "kubernetes_ingress" "sep" {
   depends_on = [resource.helm_release.sep] 
 }
 
-data "kubernetes_service" "ingress_reference" {
+data "kubernetes_service" "ingress_service" {
     metadata {
       name = "reference-server-service"
       namespace = "anchor-platform"
