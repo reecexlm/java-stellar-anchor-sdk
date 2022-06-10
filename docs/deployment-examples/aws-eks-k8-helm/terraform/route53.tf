@@ -29,7 +29,7 @@ resource "aws_route53_record" "sep" {
   type    = "CNAME"
   ttl     = "300"
   #records = [data.kubernetes_ingress.sep_ingress.status.0.load_balancer.0.ingress.0.hostname]
-  records = [kubernetes_ingress.reference.load_balancer_ingress.0.hostname]
+  records = "abc.com"
 }
 
 resource "aws_route53_record" "ref" {
@@ -40,5 +40,6 @@ resource "aws_route53_record" "ref" {
   records = [data]
   #records = [data.kubernetes_service.ref_service.status.0.load_balancer.0.ingress.0.hostname]
   #records = [data.kubernetes_ingress.ref_ingress.status.0.load_balancer.0.ingress.0.hostname]
-  records = ["abc.com"]
+  #records = ["abc.com"]
+  records = [kubernetes_ingress.reference.load_balancer_ingress.0.hostname]
 }
