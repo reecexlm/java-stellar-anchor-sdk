@@ -20,7 +20,7 @@ data "kubernetes_ingress" "ingress_ref" {
     }
 }
 
-output "k8s_service_ref" {
+output "k8s_ingress_ref" {
   value = data.kubernetes_ingress.ingress_ref.status
   #.status.0.load_balancer.0.ingress.0.hostname
 }
