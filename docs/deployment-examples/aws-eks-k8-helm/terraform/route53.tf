@@ -16,6 +16,7 @@ data "kubernetes_ingress_v1" "ref" {
     namespace = "anchor-platform"
     name = "reference-server-ingress"
   }
+  depends_on = [resource.helm_release.ref]
 }
 
 resource "aws_route53_record" "sep" {

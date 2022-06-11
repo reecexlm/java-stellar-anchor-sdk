@@ -19,12 +19,11 @@ resource "helm_release" "reference" {
   version          = "17.1.3"
   create_namespace = true
   wait             = true
-  wait_for_jobs    = true
   reset_values     = true
   max_history      = 3
   timeout          = 600
 
-values = [local.helm_chart_values]
+values = [local.helm_chart_values, module.eks.cluster_id]
 
 }
 

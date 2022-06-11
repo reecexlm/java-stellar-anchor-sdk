@@ -16,13 +16,12 @@ resource "helm_release" "sep" {
   version          = "17.1.3"
   create_namespace = true
   wait             = true
-  wait_for_jobs    = true
   reset_values     = true
   max_history      = 3
   timeout          = 600
 
     values = [templatefile("${path.module}/anchor-platform-sep-server-values.yaml",
     local.sep_template_vars)]
-    depends_on = [resource.helm_release.ingress-nginx, resource.helm_release.reference]
+    depends_on = [resource.helm_release.ingress-nginx, resource.helm_release.reference, module.eks.cluster_id]
 }
 
