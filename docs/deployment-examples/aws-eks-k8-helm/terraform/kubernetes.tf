@@ -11,12 +11,3 @@ provider "kubernetes" {
   cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
 }
 
-data "kubernetes_ingress_v1" "example" {
-  metadata {
-    namespace = "anchor-platform"
-    name = "reference-server-ingress"
-  }
-}
-output "ingress_v1" {
-  value = data.kubernetes_ingress_v1.example.status.0.load_balancer.0.ingress.0.hostname
-}
