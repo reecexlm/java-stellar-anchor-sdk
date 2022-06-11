@@ -4,7 +4,6 @@ locals {
     #bootstrap_broker = "${element(split(",", data.aws_msk_cluster.anchor_msk.bootstrap_brokers), 0)}"
   }
 
-
   helm_chart_values = templatefile(
       "${path.module}/anchor-platform-reference-server-values.yaml",
       local.template_vars
@@ -23,7 +22,7 @@ resource "helm_release" "reference" {
   max_history      = 3
   timeout          = 600
 
-values = [local.helm_chart_values, module.eks.cluster_id]
+values = [local.helm_chart_values, module.eks.cluster.cluster_id]
 
 }
 
