@@ -3,7 +3,7 @@ data "aws_route53_zone" "anchor-zone" {
   private_zone = false
 }
 
-data "kubernetes_ingress" "sep" {
+data "kubernetes_ingress_v1" "sep" {
   metadata {
     namespace = "anchor-platform"
     name = "sep-server-ingress"
@@ -11,7 +11,7 @@ data "kubernetes_ingress" "sep" {
   depends_on = [resource.helm_release.sep]
 }
 
-data "kubernetes_ingress" "ref" {
+data "kubernetes_ingress_v1" "ref" {
   metadata {
     namespace = "anchor-platform"
     name = "reference-server-ingress"

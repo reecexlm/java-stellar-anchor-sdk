@@ -18,5 +18,5 @@ variable "map_users" {
 variable "hosted_zone_name" {
   description = "name of hosted zone for anchor platform"
   type = string
-  #default = "stellaranchordemo.com"
+  default = "stellaranchordemo.com"
 }
