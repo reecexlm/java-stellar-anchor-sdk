@@ -1,4 +1,4 @@
-resource "helm_release" "aws-lb-controller" {
+resource "helm_release" "aws_lb_controller" {
   name             = "alb-ingress-controller"
   repository = "https://aws.github.io/eks-charts"
   chart      = "aws-load-balancer-controller"
@@ -27,6 +27,7 @@ resource "helm_release" "aws-lb-controller" {
     name = "serviceAccount.name"
     value = "alb-ingress-controller"
   }
-  
+
+  depends_on = [module.eks.cluster_id]  
 }
 

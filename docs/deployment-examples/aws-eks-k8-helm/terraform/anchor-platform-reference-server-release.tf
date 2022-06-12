@@ -24,7 +24,7 @@ resource "helm_release" "reference" {
   timeout          = 600
 
 values = [local.helm_chart_values]
-depends_on = [module.eks.cluster_id]
+depends_on = [module.eks.cluster_id, helm_release.aws-lb-controller]
 
 }
 

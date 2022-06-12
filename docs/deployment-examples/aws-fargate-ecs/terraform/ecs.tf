@@ -162,12 +162,12 @@ resource "aws_alb_listener" "sep_http" {
    }
   }
 }
-data "aws_route53_zone" "anchor-zone" {
+data "aws_route53_zone" "anchor_zone" {
   name         = "${var.hosted_zone_name}"
   private_zone = false
 }
  data "aws_acm_certificate" "issued" {
-  domain   = "www.${data.aws_route53_zone.anchor-zone.name}"
+  domain   = "www.${data.aws_route53_zone.anchor_zone.name}"
   statuses = ["ISSUED"]
 }
 resource "aws_alb_listener" "sep_https" {

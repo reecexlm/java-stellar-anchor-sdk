@@ -22,6 +22,8 @@ resource "helm_release" "cert-manager" {
   reset_values     = true
   max_history      = 3
   timeout          = 600
+
+  depends_on = [module.eks.cluster_id]
 }
 
 resource "helm_release" "cert-issuer" {
@@ -33,10 +35,9 @@ resource "helm_release" "cert-issuer" {
   reset_values     = true
   max_history      = 3
   timeout          = 600
-  depends_on = [resource.helm_release.cert-manager, resource.helm_release.reference]
 
-      #values = []#"${path.module}/anchor-platform-sep-server-values.yaml"]
-    values = [templatefile("${path.module}/anchor-platform-sep-server-values.yaml",
+  values = [templatefile("${path.module}/anchor-platform-sep-server-values.yaml",
     local.sep_template_vars)]
-
+    
+  depends_on = [resource.helm_release.cert-manager]
 }

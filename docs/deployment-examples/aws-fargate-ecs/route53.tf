@@ -3,22 +3,22 @@ provider "acme" {
   #server_url = "https://acme-v02.api.letsencrypt.org/directory"
 }
 
-data "aws_route53_zone" "anchor-zone" {
+data "aws_route53_zone" "anchor_zone" {
   name         = "${var.hosted_zone_name}"
   private_zone = false
 }
 
 resource "aws_route53_record" "sep" {
-  zone_id = data.aws_route53_zone.anchor-zone.zone_id
-  name    = "www.${data.aws_route53_zone.anchor-zone.name}"
+  zone_id = data.aws_route53_zone.anchor_zone.zone_id
+  name    = "www.${data.aws_route53_zone.anchor_zone.name}"
   type    = "CNAME"
   ttl     = "300"
   records = [aws_lb.sep.dns_name]
 }
 
 resource "aws_route53_record" "ref" {
-  zone_id = data.aws_route53_zone.anchor-zone.zone_id
-  name    = "www.${data.aws_route53_zone.anchor-zone.name}"
+  zone_id = data.aws_route53_zone.anchor_zone.zone_id
+  name    = "www.${data.aws_route53_zone.anchor_zone.name}"
   type    = "CNAME"
   ttl     = "300"
   records = [aws_lb.ref.dns_name]
@@ -35,14 +35,14 @@ resource "acme_registration" "registration" {
 
 resource "acme_certificate" "certificate" {
   account_key_pem           = acme_registration.registration.account_key_pem
-  common_name               = data.aws_route53_zone.anchor-zone.name
-  subject_alternative_names = ["*.${data.aws_route53_zone.anchor-zone.name}"]
+  common_name               = data.aws_route53_zone.anchor_zone.name
+  subject_alternative_names = ["*.${data.aws_route53_zone.anchor_zone.name}"]
 
   dns_challenge {
     provider = "route53"
 
     config = {
-      AWS_HOSTED_ZONE_ID = data.aws_route53_zone.anchor-zone.zone_id
+      AWS_HOSTED_ZONE_ID = data.aws_route53_zone.anchor_zone.zone_id
     }
   }
 

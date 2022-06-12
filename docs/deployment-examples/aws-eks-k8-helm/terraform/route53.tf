@@ -1,4 +1,4 @@
-data "aws_route53_zone" "anchor-zone" {
+data "aws_route53_zone" "anchor_zone" {
   name         = "${var.hosted_zone_name}"
   private_zone = false
 }
@@ -20,16 +20,16 @@ data "kubernetes_ingress_v1" "ref" {
 }
 
 resource "aws_route53_record" "sep" {
-  zone_id = data.aws_route53_zone.anchor-zone.zone_id
-  name    = "www.${data.aws_route53_zone.anchor-zone.name}"
+  zone_id = data.aws_route53_zone.anchor_zone.zone_id
+  name    = "www.${data.aws_route53_zone.anchor_zone.name}"
   type    = "CNAME"
   ttl     = "300"
   records = [data.kubernetes_ingress_v1.sep.status.0.load_balancer.0.ingress.0.hostname]
 }
 
 resource "aws_route53_record" "ref" {
-  zone_id = data.aws_route53_zone.anchor-zone.zone_id
-  name    = "ref.${data.aws_route53_zone.anchor-zone.name}"
+  zone_id = data.aws_route53_zone.anchor_zone.zone_id
+  name    = "ref.${data.aws_route53_zone.anchor_zone.name}"
   type    = "CNAME"
   ttl     = "300"
   #records = [data.kubernetes_service.ref_service.status.0.load_balancer.0.ingress.0.hostname]
