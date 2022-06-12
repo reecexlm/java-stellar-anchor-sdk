@@ -1,7 +1,7 @@
 locals {
   template_vars = {
     alb_ingress_iam_role_arn = aws_iam_role.eks_cluster.arn
-    #bootstrap_broker = "${element(split(",", data.aws_msk_cluster.anchor_msk.bootstrap_brokers), 0)}"
+    bootstrap_broker = "${element(split(",", data.aws_msk_cluster.anchor_msk.bootstrap_brokers), 0)}"
   }
 
 

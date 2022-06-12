@@ -6,7 +6,7 @@ locals {
   }
   sep_template_vars = {
     reference_endpoint = data.kubernetes_ingress_v1.ref.status.0.load_balancer.0.ingress.0.hostname
-    #bootstrap_broker = "${element(split(",", data.aws_msk_cluster.anchor_msk.bootstrap_brokers), 0)}"
+    bootstrap_broker = "${element(split(",", data.aws_msk_cluster.anchor_msk.bootstrap_brokers), 0)}"
   }
 }
 resource "helm_release" "sep" {
