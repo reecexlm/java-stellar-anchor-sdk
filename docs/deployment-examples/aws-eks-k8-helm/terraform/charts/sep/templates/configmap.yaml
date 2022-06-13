@@ -9,37 +9,37 @@ data:
     stellar:
       anchor:
         config: in-memory
-        app-config:
+        app_config:
           type: config-spring-property                # Activate [config-spring-property] module
-          settings: app-config                        # The location of the configuration data
+          settings: app_config                        # The location of the configuration data
         data-access:
           type: data-spring-jdbc                      # Activate [config-spring-jdbc] module.
           settings: data-spring-jdbc-sqlite           # The location of the configuration data in this file.
         logging:
           type: logging-logback
           settings: logging-logback-settings
-    app-config:
+    app_config:
       app:
         stellarNetworkPassphrase: Test SDF Network ; September 2015
-        hostUrl: {{ .Values.stellar.app-config.app.hostUrl }}
+        hostUrl: {{ .Values.stellar.app_config.app.hostUrl }}
         languages: en
-        horizonUrl: {{ .Values.stellar.app-config.app.horizonUrl }}
+        horizonUrl: {{ .Values.stellar.app_config.app.horizonUrl }}
         assets: assets-test.json
-        jwtSecretKey: {{ .Values.stellar.app-config.app.jwtSecretKey }}
+        jwtSecretKey: {{ .Values.stellar.app_config.app.jwtSecretKey }}
     
       # sep-1
       sep1:
         enabled: true
         stellarFile: file:/config/stellar-wks.toml
       sep10:
-        enabled: {{ .Values.stellar.app-config.app.sep10.enabled }}
-        homeDomain: {{ .Values.stellar.app-config.app.sep10.homeDomain }}
-        clientAttributionRequired: {{ .Values.stellar.app-config.app.sep10.false }}
-        clientAttributionAllowList:  {{ .Values.stellar.app-config.app.sep10.clientAttributionAllowList }}
+        enabled: {{ .Values.stellar.app_config.app.sep10.enabled }}
+        homeDomain: {{ .Values.stellar.app_config.app.sep10.homeDomain }}
+        clientAttributionRequired: {{ .Values.stellar.app_config.app.sep10.false }}
+        clientAttributionAllowList:  {{ .Values.stellar.app_config.app.sep10.clientAttributionAllowList }}
         # clientAttributionDenyList: # use this if we want to black list.
-        authTimeout: {{ .Values.stellar.app-config.app.sep10.authTimeout }}
-        jwtTimeout: {{ .Values.stellar.app-config.app.sep10.jwtTimeout }}
-        signingSeed: {{ .Values.stellar.app-config.app.sep10.signingSeed }}
+        authTimeout: {{ .Values.stellar.app_config.app.sep10.authTimeout }}
+        jwtTimeout: {{ .Values.stellar.app_config.app.sep10.jwtTimeout }}
+        signingSeed: {{ .Values.stellar.app_config.app.sep10.signingSeed }}
       # sep-12
       sep12:
         enabled: true
