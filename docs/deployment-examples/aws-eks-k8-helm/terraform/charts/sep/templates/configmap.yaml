@@ -27,11 +27,11 @@ data:
       # general
       app:
         stellarNetworkPassphrase: Test SDF Network ; September 2015
-        hostUrl: https://www.stellaranchordemo.com
+        hostUrl: {{ .Values.app-config.app.hostUrl }}
         languages: en
-        horizonUrl: https://horizon-testnet.stellar.org
+        horizonUrl: {{ .Values.app-config.app.horizonUrl }}
         assets: assets-test.json
-        jwtSecretKey: secret
+        jwtSecretKey: {{ .Values.app-config.app.jwtSecretKey }}
     
       # sep-1
       sep1:

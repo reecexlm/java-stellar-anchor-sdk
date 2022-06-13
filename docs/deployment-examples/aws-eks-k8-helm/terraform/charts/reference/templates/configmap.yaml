@@ -9,7 +9,7 @@ data:
     server:
       servlet:
         context-path: /
-        port: 8081
+        port: {{ .Values.port }}
     #
     # The settings of the anchor reference serer
     #
