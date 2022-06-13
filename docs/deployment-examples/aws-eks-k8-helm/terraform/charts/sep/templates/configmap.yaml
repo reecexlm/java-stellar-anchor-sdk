@@ -8,8 +8,6 @@ data:
   anchor-config.yaml: |
     stellar:
       anchor:
-        # Configure the application from this file after it is loaded in memory
-        # If `config` is in-memory, the yaml file contains all settings for the server.
         config: in-memory
         app-config:
           type: config-spring-property                # Activate [config-spring-property] module
@@ -20,33 +18,28 @@ data:
         logging:
           type: logging-logback
           settings: logging-logback-settings
-    #
-    # Application settings
-    #
     app-config:
-      # general
       app:
         stellarNetworkPassphrase: Test SDF Network ; September 2015
-        hostUrl: {{ .Values.app-config.app.hostUrl }}
+        hostUrl: {{ .Values.stellar.app-config.app.hostUrl }}
         languages: en
-        horizonUrl: {{ .Values.app-config.app.horizonUrl }}
+        horizonUrl: {{ .Values.stellar.app-config.app.horizonUrl }}
         assets: assets-test.json
-        jwtSecretKey: {{ .Values.app-config.app.jwtSecretKey }}
+        jwtSecretKey: {{ .Values.stellar.app-config.app.jwtSecretKey }}
     
       # sep-1
       sep1:
         enabled: true
         stellarFile: file:/config/stellar-wks.toml
-      # sep-10
       sep10:
-        enabled: true
-        homeDomain: www.stellaranchordemo.com
-        clientAttributionRequired: false
-        clientAttributionAllowList: lobstr.co,preview.lobstr.co # use this if we want to white list
+        enabled: {{ .Values.stellar.app-config.app.sep10.enabled }}
+        homeDomain: {{ .Values.stellar.app-config.app.sep10.homeDomain }}
+        clientAttributionRequired: {{ .Values.stellar.app-config.app.sep10.false }}
+        clientAttributionAllowList:  {{ .Values.stellar.app-config.app.sep10.clientAttributionAllowList }}
         # clientAttributionDenyList: # use this if we want to black list.
-        authTimeout: 900
-        jwtTimeout: 86400
-        signingSeed: SBTBRGMPWNLXOZQQQXXZRJKCZPYTAZT5FC4VEAECF2HOBCONTSH4EXKS
+        authTimeout: {{ .Values.stellar.app-config.app.sep10.authTimeout }}
+        jwtTimeout: {{ .Values.stellar.app-config.app.sep10.jwtTimeout }}
+        signingSeed: {{ .Values.stellar.app-config.app.sep10.signingSeed }}
       # sep-12
       sep12:
         enabled: true
