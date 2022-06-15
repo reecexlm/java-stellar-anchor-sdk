@@ -30,7 +30,7 @@ data:
       # sep-1
       sep1:
         enabled: {{ .Values.stellar.app_config.sep1.enabled }}
-        stellarFile: file:/config/stellar-wks.toml
+        stellarFile: {{ .Values.stellar.app_config.sep1.stellarFile }}
       sep10:
         enabled: {{ .Values.stellar.app_config.sep10.enabled }}
         homeDomain: {{ .Values.stellar.app_config.sep10.homeDomain }}
@@ -43,48 +43,29 @@ data:
       # sep-12
       sep12:
         enabled: true
-        customerIntegrationEndpoint: http://ref.stellaranchordemo.com
-        #customerIntegrationEndpoint: http://10.0.1.23:8081
+        customerIntegrationEndpoint: {{ .Values.stellar.app_config.sep12.customerIntegrationEndpoint }}
     
       # sep-24
       sep24:
-        enabled: true
-        interactiveJwtExpiration: 3600
-        interactiveUrl: http://ref.stellaranchordemo.com/sep24/interactive
+        enabled: {{ .Values.stellar.app_config.sep24.enabled }}
+        interactiveJwtExpiration: {{ .Values.stellar.app_config.sep24.interactiveJwtExpiration }}
+        interactiveUrl: {{ .Values.stellar.app_config.sep24.interactiveUrl }}
       # sep-31
       sep31:
-        enabled: true
-        feeIntegrationEndPoint: http://ref.stellaranchordemo.com
-        #
-        # paymentType: used to determine how amount_in is calculated from amount in the POST /transaction call
-        # Possible values: STRICT_SEND or STRICT_RECEIVE. default=STRICT_SEND
-        #     STRICT_SEND: amount_in = amount
-        #     STRICT_RECEIVE: amount_in = amount + fee
-        paymentType: STRICT_SEND
-        #
-        # depositInfoGeneratorType: used to choose how the SEP-31 deposit information will be generated, which includes the
-        # deposit address, memo and memo type.
-        # Possible values:
-        #     self: the memo and memo type are generated in the local code, and the distribution account is used for the deposit address.
-        #     circle: the memo and memo type are generated through Circle API, as well as the deposit address.
-        depositInfoGeneratorType: self # self or circle
+        enabled: {{ .Values.stellar.app_config.sep31.enabled }}
+        feeIntegrationEndPoint: {{ .Values.stellar.app_config.sep31.feeIntegrationEndPoint }}
+        depositInfoGeneratorType: {{ .Values.stellar.app_config.sep31.depositInfoGeneratorType }}
       # sep-38
       sep38:
-        enabled: true
-        quoteIntegrationEndPoint: http://ref.stellaranchordemo.com
+        enabled: {{ .Values.stellar.app_config.sep38.enabled }}
+        quoteIntegrationEndPoint: {{ .Values.stellar.app_config.sep38.quoteIntegrationEndPoint }}
       circle:
-        circleUrl: https://api-sandbox.circle.com
-        apiKey: secret # circle API key
+        circleUrl: {{ .Values.stellar.app_config.circle.circleUrl }}
+        apiKey: {{ .Values.stellar.app_config.circle.apiKey }}
       payment-gateway:
-        #
-        # Payment Circle configurations
-        #
         circle:
           name: "circle"
           enabled: true
-        #
-        # Payment Stellar configurations
-        #
         stellar:
           enabled: false
           name: "stellar"
@@ -101,34 +82,30 @@ data:
         enabled: true
         publisherType: kafka
       kafka.publisher:
-        # kafkaBootstrapServer - the Kafka server used to bootstrap setup
-        # If useSingleQueue, all events are published to a single queue
-        #   (specified in eventTypeToQueue.all)
-        # eventTypeToQueue - a map of the event type to the queue name messages are published to
-        bootstrapServer: {{ .Values.bootstrap_broker }}
-        useSingleQueue: false
+        bootstrapServer: {{ .Values.stellar.app_config.kafka.publisher.bootstrapServer }}
+        useSingleQueue: {{ .Values.stellar.app_config.kafka.publisher.useSingleQueue }}
         eventTypeToQueue:
-          all: dev_ap_event_single_queue
-          quoteCreated: dev_ap_event_quote_created
-          transactionCreated: dev_ap_event_transaction_created
-          transactionStatusChanged: dev_ap_event_transaction_status_changed
-          transactionError: dev_ap_event_transaction_error
+          all: {{ .Values.stellar.app_config.kafka.publisher.eventTypeToQueue.all }}
+          quoteCreated: {{ .Values.stellar.app_config.kafka.publisher.eventTypeToQueue.quoteCreated }}
+          transactionCreated: {{ .Values.stellar.app_config.kafka.publisher.eventTypeToQueue.transactionCreated }}
+          transactionStatusChanged: {{ .Values.stellar.app_config.kafka.publisher.eventTypeToQueue.transactionStatusChanged }}
+          transactionError: {{ .Values.stellar.app_config.kafka.publisher.eventTypeToQueue.transactionError }}
     #
     # Spring Data JDBC settings
     #
     data-spring-jdbc-sqlite:
-      spring.jpa.database-platform: org.stellar.anchor.platform.sqlite.SQLiteDialect
-      spring.jpa.hibernate.ddl-auto: update
-      spring.jpa.generate-ddl: true
-      spring.jpa.hibernate.show_sql: false
-      spring.datasource.url: jdbc:sqlite:anchor-proxy.db
-      spring.datasource.driver-class-name: org.sqlite.JDBC
-      spring.datasource.username: admin
-      spring.datasource.password: admin
-      spring.mvc.converters.preferred-json-mapper: gson
+      spring.jpa.database-platform: {{ .Values.stellar.app_config.data-spring-jdbc-sqlite.spring.jpa.database-platform }}
+      spring.jpa.hibernate.ddl-auto: {{ .Values.stellar.app_config.data-spring-jdbc-sqlite.spring.jpa.hibernate.ddl-auto }}
+      spring.jpa.generate-ddl: {{ .Values.stellar.app_config.data-spring-jdbc-sqlite.spring.jpa.generate-ddl }}
+      spring.jpa.hibernate.show_sql: {{ .Values.stellar.app_config.data-spring-jdbc-sqlite.spring.jpa.hibernate.show_sql }}
+      spring.datasource.url: {{ .Values.stellar.app_config.data-spring-jdbc-sqlite.spring.datasource.url }}
+      spring.datasource.driver-class-name: {{ .Values.stellar.app_config.data-spring-jdbc-sqlite.spring.datasource.driver-class-name }}
+      spring.datasource.username: {{ .Values.stellar.app_config.data-spring-jdbc-sqlite.spring.datasource.username }}
+      spring.datasource.password: {{ .Values.stellar.app_config.data-spring-jdbc-sqlite.spring.datasource.password }}
+      spring.mvc.converters.preferred-json-mapper: {{ .Values.stellar.app_config.data-spring-jdbc-sqlite.spring.mvc.converters.preferred-json-mapper }}
     data-spring-jdbc-h2:
-      spring.datasource.url: jdbc:h2:mem:test
-      spring.jpa.properties.hibernate.dialect: org.hibernate.dialect.H2Dialect
+      spring.datasource.url: {{ .Values.stellar.app_config.data-spring-jdbc-sqlite.spring.datasource.url }}
+      spring.jpa.properties.hibernate.dialect: {{ .Values.stellar.app_config.data-spring-jdbc-sqlite.spring.jpa.properties.hibernate.dialect }}
     #
     # Spring framework configurations
     #
