@@ -76,18 +76,18 @@ stellar:
             transactionStatusChanged: dev_ap_event_transaction_status_changed
             transactionError: dev_ap_event_transaction_error
       data_spring_jdbc_sqlite:
-         spring.jpa.database_platform: org.stellar.anchor.platform.sqlite.SQLiteDialect
-         spring.jpa.hibernate.ddl_auto: update
-         spring.jpa.generate_ddl: true
-         spring.jpa.hibernate.show_sql: false
-         spring.datasource.url: jdbc:sqlite:anchor_proxy.db
-         spring.datasource.driver_class_name: org.sqlite.JDBC
-         spring.datasource.username: admin
-         spring.datasource.password: admin
-         spring.mvc.converters.preferred_json_mapper: gson
+         spring_jpa_database_platform: org.stellar.anchor.platform.sqlite.SQLiteDialect
+         spring_jpa_hibernate.ddl_auto: update
+         spring_jpa_generate_ddl: true
+         spring_jpa_hibernate.show_sql: false
+         sprint_datasource_url: jdbc:sqlite:anchor_proxy.db
+         sprint_datasource_driver_class_name: org.sqlite.JDBC
+         sprint_datasource_username: admin
+         sprint_datasource_password: admin
+         spring_mvc_converters_preferred_json_mapper: gson
       data_spring_jdbc_h2:
-         spring.datasource.url: jdbc:h2:mem:test
-         spring.jpa.properties.hibernate.dialect: org.hibernate.dialect.H2Dialect
+         sprint_datasource_url: jdbc:h2:mem:test
+         spring_jpa_properties_hibernate_dialect: org.hibernate.dialect.H2Dialect
       spring:
       logging:
          level:
