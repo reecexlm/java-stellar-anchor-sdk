@@ -13,87 +13,87 @@ stellar:
          type: logging-logback
          settings: logging-logback-settings
    app_config:
-   app:
-      stellarNetworkPassphrase: Test SDF Network ; September 2015
-      hostUrl: https://www.stellaranchordemo.com
-      languages: en
-      horizonUrl: https://horizon-testnet.stellar.org
-      assets: assets-test.json
-      jwtSecretKey: secret
-   sep1:
-      enabled: true
-      stellarFile: file:/config/stellar-wks.toml
-   sep10:
-      enabled: true
-      homeDomain: www.stellaranchordemo.com
-      clientAttributionRequired: false
-      clientAttributionAllowList: lobstr.co,preview.lobstr.co # use this if we want to white list
-      # clientAttributionDenyList: # use this if we want to black list.
-      authTimeout: 900
-      jwtTimeout: 86400
-      signingSeed: SBTBRGMPWNLXOZQQQXXZRJKCZPYTAZT5FC4VEAECF2HOBCONTSH4EXKS
-   sep12:
-      enabled: true
-      customerIntegrationEndpoint: ${reference_endpoint}
-   sep24:
-      enabled: true
-      interactiveJwtExpiration: 3600
-      interactiveUrl: http://ref.stellaranchordemo.com/sep24/interactive
-   sep31:
-      enabled: true
-      feeIntegrationEndPoint: http://ref.stellaranchordemo.com
-      depositInfoGeneratorType: self # self or circle
-   sep38:
-      enabled: true
-      quoteIntegrationEndPoint: http://ref.stellaranchordemo.com
-   circle:
-      circleUrl: https://api-sandbox.circle.com
-      apiKey: secret # circle API key
-   payment-gateway:
-      circle:
-         name: "circle"
-         enabled: true
-      stellar:
-         enabled: false
-         name: "stellar"
+      app:
+         stellarNetworkPassphrase: Test SDF Network ; September 2015
+         hostUrl: https://www.stellaranchordemo.com
+         languages: en
          horizonUrl: https://horizon-testnet.stellar.org
-         secretKey: secret # stellar account secret key
-   circle-payment-observer:
-      enabled: true
-      horizonUrl: https://horizon-testnet.stellar.org
-      stellarNetwork: TESTNET # TESTNET or PUBLIC
-      trackedWallet: all
-   event:
-      enabled: true
-      publisherType: kafka
-   kafka.publisher:
-      bootstrapServer: ${bootstrap_broker}
-      useSingleQueue: false
-      eventTypeToQueue:
-         all: dev_ap_event_single_queue
-         quoteCreated: dev_ap_event_quote_created
-         transactionCreated: dev_ap_event_transaction_created
-         transactionStatusChanged: dev_ap_event_transaction_status_changed
-         transactionError: dev_ap_event_transaction_error
-   data-spring-jdbc-sqlite:
-   spring.jpa.database-platform: org.stellar.anchor.platform.sqlite.SQLiteDialect
-   spring.jpa.hibernate.ddl-auto: update
-   spring.jpa.generate-ddl: true
-   spring.jpa.hibernate.show_sql: false
-   spring.datasource.url: jdbc:sqlite:anchor-proxy.db
-   spring.datasource.driver-class-name: org.sqlite.JDBC
-   spring.datasource.username: admin
-   spring.datasource.password: admin
-   spring.mvc.converters.preferred-json-mapper: gson
-   data-spring-jdbc-h2:
-   spring.datasource.url: jdbc:h2:mem:test
-   spring.jpa.properties.hibernate.dialect: org.hibernate.dialect.H2Dialect
-   spring:
-   logging:
-      level:
-         root: DEBUG
-         org.springframework: DEBUG
-         org.springframework.web.filter: DEBUG
-         org.stellar: DEBUG
-   mvc:
-      async.request-timeout: 6000
+         assets: assets-test.json
+         jwtSecretKey: secret
+      sep1:
+         enabled: true
+         stellarFile: file:/config/stellar-wks.toml
+      sep10:
+         enabled: true
+         homeDomain: www.stellaranchordemo.com
+         clientAttributionRequired: false
+         clientAttributionAllowList: lobstr.co,preview.lobstr.co # use this if we want to white list
+         # clientAttributionDenyList: # use this if we want to black list.
+         authTimeout: 900
+         jwtTimeout: 86400
+         signingSeed: SBTBRGMPWNLXOZQQQXXZRJKCZPYTAZT5FC4VEAECF2HOBCONTSH4EXKS
+      sep12:
+         enabled: true
+         customerIntegrationEndpoint: ${reference_endpoint}
+      sep24:
+         enabled: true
+         interactiveJwtExpiration: 3600
+         interactiveUrl: http://ref.stellaranchordemo.com/sep24/interactive
+      sep31:
+         enabled: true
+         feeIntegrationEndPoint: http://ref.stellaranchordemo.com
+         depositInfoGeneratorType: self # self or circle
+      sep38:
+         enabled: true
+         quoteIntegrationEndPoint: http://ref.stellaranchordemo.com
+      circle:
+         circleUrl: https://api-sandbox.circle.com
+         apiKey: secret # circle API key
+      payment-gateway:
+         circle:
+            name: "circle"
+            enabled: true
+         stellar:
+            enabled: false
+            name: "stellar"
+            horizonUrl: https://horizon-testnet.stellar.org
+            secretKey: secret # stellar account secret key
+      circle-payment-observer:
+         enabled: true
+         horizonUrl: https://horizon-testnet.stellar.org
+         stellarNetwork: TESTNET # TESTNET or PUBLIC
+         trackedWallet: all
+      event:
+         enabled: true
+         publisherType: kafka
+      kafka.publisher:
+         bootstrapServer: ${bootstrap_broker}
+         useSingleQueue: false
+         eventTypeToQueue:
+            all: dev_ap_event_single_queue
+            quoteCreated: dev_ap_event_quote_created
+            transactionCreated: dev_ap_event_transaction_created
+            transactionStatusChanged: dev_ap_event_transaction_status_changed
+            transactionError: dev_ap_event_transaction_error
+      data-spring-jdbc-sqlite:
+      spring.jpa.database-platform: org.stellar.anchor.platform.sqlite.SQLiteDialect
+      spring.jpa.hibernate.ddl-auto: update
+      spring.jpa.generate-ddl: true
+      spring.jpa.hibernate.show_sql: false
+      spring.datasource.url: jdbc:sqlite:anchor-proxy.db
+      spring.datasource.driver-class-name: org.sqlite.JDBC
+      spring.datasource.username: admin
+      spring.datasource.password: admin
+      spring.mvc.converters.preferred-json-mapper: gson
+      data-spring-jdbc-h2:
+      spring.datasource.url: jdbc:h2:mem:test
+      spring.jpa.properties.hibernate.dialect: org.hibernate.dialect.H2Dialect
+      spring:
+      logging:
+         level:
+            root: DEBUG
+            org.springframework: DEBUG
+            org.springframework.web.filter: DEBUG
+            org.stellar: DEBUG
+      mvc:
+         async.request-timeout: 6000
