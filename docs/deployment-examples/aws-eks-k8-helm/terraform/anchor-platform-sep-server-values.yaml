@@ -77,7 +77,7 @@ stellar:
             transactionError: dev_ap_event_transaction_error
       data_spring_jdbc_sqlite:
          spring_jpa_database_platform: org.stellar.anchor.platform.sqlite.SQLiteDialect
-         spring_jpa_hibernate.ddl_auto: update
+         spring_jpa_hibernate_ddl_auto: update
          spring_jpa_generate_ddl: true
          spring_jpa_hibernate.show_sql: false
          sprint_datasource_url: jdbc:sqlite:anchor_proxy.db
