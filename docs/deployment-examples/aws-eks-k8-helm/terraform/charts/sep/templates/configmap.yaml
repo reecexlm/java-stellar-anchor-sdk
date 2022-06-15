@@ -82,14 +82,14 @@ data:
         enabled: true
         publisherType: kafka
       kafka.publisher:
-        bootstrapServer: {{ .Values.stellar.app_config.kafka.publisher.bootstrapServer }}
-        useSingleQueue: {{ .Values.stellar.app_config.kafka.publisher.useSingleQueue }}
+        bootstrapServer: {{ .Values.stellar.app_config.kafka_publisher.bootstrapServer }}
+        useSingleQueue: {{ .Values.stellar.app_config.kafka_publisher.useSingleQueue }}
         eventTypeToQueue:
-          all: {{ .Values.stellar.app_config.kafka.publisher.eventTypeToQueue.all }}
-          quoteCreated: {{ .Values.stellar.app_config.kafka.publisher.eventTypeToQueue.quoteCreated }}
-          transactionCreated: {{ .Values.stellar.app_config.kafka.publisher.eventTypeToQueue.transactionCreated }}
-          transactionStatusChanged: {{ .Values.stellar.app_config.kafka.publisher.eventTypeToQueue.transactionStatusChanged }}
-          transactionError: {{ .Values.stellar.app_config.kafka.publisher.eventTypeToQueue.transactionError }}
+          all: {{ .Values.stellar.app_config.kafka_publisher.eventTypeToQueue.all }}
+          quoteCreated: {{ .Values.stellar.app_config.kafka_publisher.eventTypeToQueue.quoteCreated }}
+          transactionCreated: {{ .Values.stellar.app_config.kafka_publisher.eventTypeToQueue.transactionCreated }}
+          transactionStatusChanged: {{ .Values.stellar.app_config.kafka_publisher.eventTypeToQueue.transactionStatusChanged }}
+          transactionError: {{ .Values.stellar.app_config.kafka_publisher.eventTypeToQueue.transactionError }}
     #
     # Spring Data JDBC settings
     #
