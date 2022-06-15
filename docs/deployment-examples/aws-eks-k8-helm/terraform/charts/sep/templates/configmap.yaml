@@ -29,17 +29,17 @@ data:
     
       # sep-1
       sep1:
-        enabled: true
+        enabled: {{ .Values.stellar.app_config.sep1.enabled }}
         stellarFile: file:/config/stellar-wks.toml
       sep10:
-        enabled: {{ .Values.stellar.app_config.app.sep10.enabled }}
-        homeDomain: {{ .Values.stellar.app_config.app.sep10.homeDomain }}
-        clientAttributionRequired: {{ .Values.stellar.app_config.app.sep10.false }}
-        clientAttributionAllowList:  {{ .Values.stellar.app_config.app.sep10.clientAttributionAllowList }}
+        enabled: {{ .Values.stellar.app_config.sep10.enabled }}
+        homeDomain: {{ .Values.stellar.app_config.sep10.homeDomain }}
+        clientAttributionRequired: {{ .Values.stellar.app_config.sep10.false }}
+        clientAttributionAllowList:  {{ .Values.stellar.app_config.sep10.clientAttributionAllowList }}
         # clientAttributionDenyList: # use this if we want to black list.
-        authTimeout: {{ .Values.stellar.app_config.app.sep10.authTimeout }}
-        jwtTimeout: {{ .Values.stellar.app_config.app.sep10.jwtTimeout }}
-        signingSeed: {{ .Values.stellar.app_config.app.sep10.signingSeed }}
+        authTimeout: {{ .Values.stellar.app_config.sep10.authTimeout }}
+        jwtTimeout: {{ .Values.stellar.app_config.sep10.jwtTimeout }}
+        signingSeed: {{ .Values.stellar.app_config.sep10.signingSeed }}
       # sep-12
       sep12:
         enabled: true
