@@ -95,7 +95,7 @@ data:
     #
     data-spring-jdbc-sqlite:
       spring.jpa.database-platform: {{ .Values.stellar.app_config.data_spring_jdbc_sqlite.spring_jpa_database_platform }}
-      spring.jpa.hibernate.ddl-auto: {{ .Values.stellar.app_config.data_spring_jdbc_sqlite.spring_jpa_hibernate.ddl_auto }}
+      spring.jpa.hibernate.ddl-auto: {{ .Values.stellar.app_config.data_spring_jdbc_sqlite.spring_jpa_hibernate_ddl_auto }}
       spring.jpa.generate-ddl: {{ .Values.stellar.app_config.data_spring_jdbc_sqlite.spring.jpa_generate_ddl }}
       spring.jpa.hibernate.show_sql: {{ .Values.stellar.app_config.data_spring_jdbc_sqlite.spring_jpa_hibernate_show_sql }}
       spring.datasource.url: {{ .Values.stellar.app_config.data_spring_jdbc_sqlite.spring_datasource_url }}
