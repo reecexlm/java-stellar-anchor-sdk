@@ -34,7 +34,7 @@ stellar:
          signingSeed: SBTBRGMPWNLXOZQQQXXZRJKCZPYTAZT5FC4VEAECF2HOBCONTSH4EXKS
       sep12:
          enabled: true
-         customerIntegrationEndpoint: ${reference_endpoint}
+         customerIntegrationEndpoint: http://ref.stellaranchordemo.com
       sep24:
          enabled: true
          interactiveJwtExpiration: 3600
