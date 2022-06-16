@@ -32,7 +32,7 @@ data:
       sep10:
         enabled: {{ .Values.stellar.app_config.sep10.enabled }}
         homeDomain: {{ .Values.stellar.app_config.sep10.homeDomain }}
-        clientAttributionRequired: {{ .Values.stellar.app_config.sep10.false }}
+        clientAttributionRequired: {{ .Values.stellar.app_config.sep10.clientAttributionRequired }}
         clientAttributionAllowList:  {{ .Values.stellar.app_config.sep10.clientAttributionAllowList }}
         # clientAttributionDenyList: # use this if we want to black list.
         authTimeout: {{ .Values.stellar.app_config.sep10.authTimeout }}
