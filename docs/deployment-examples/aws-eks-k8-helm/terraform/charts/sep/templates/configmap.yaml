@@ -26,8 +26,6 @@ data:
         horizonUrl: {{ .Values.stellar.app_config.app.horizonUrl }}
         assets: assets-test.json
         jwtSecretKey: {{ .Values.stellar.app_config.app.jwtSecretKey }}
-    
-      # sep-1
       sep1:
         enabled: {{ .Values.stellar.app_config.sep1.enabled }}
         stellarFile: {{ .Values.stellar.app_config.sep1.stellarFile }}
@@ -44,7 +42,6 @@ data:
       sep12:
         enabled: true
         customerIntegrationEndpoint: {{ .Values.stellar.app_config.sep12.customerIntegrationEndpoint }}
-    
       # sep-24
       sep24:
         enabled: {{ .Values.stellar.app_config.sep24.enabled }}
@@ -90,9 +87,6 @@ data:
           transactionCreated: {{ .Values.stellar.app_config.kafka_publisher.eventTypeToQueue.transactionCreated }}
           transactionStatusChanged: {{ .Values.stellar.app_config.kafka_publisher.eventTypeToQueue.transactionStatusChanged }}
           transactionError: {{ .Values.stellar.app_config.kafka_publisher.eventTypeToQueue.transactionError }}
-    #
-    # Spring Data JDBC settings
-    #
     data-spring-jdbc-sqlite:
       spring.jpa.database-platform: {{ .Values.stellar.app_config.data_spring_jdbc_sqlite.spring_jpa_database_platform }}
       spring.jpa.hibernate.ddl-auto: {{ .Values.stellar.app_config.data_spring_jdbc_sqlite.spring_jpa_hibernate_ddl_auto }}
@@ -106,9 +100,6 @@ data:
     data-spring-jdbc-h2:
       spring.datasource.url: {{ .Values.stellar.app_config.data_spring_jdbc_h2.spring_datasource_url }}
       spring.jpa.properties.hibernate.dialect: {{ .Values.stellar.app_config.data_spring_jdbc_h2.spring_jpa_properties_hibernate_dialect }}
-    #
-    # Spring framework configurations
-    #
     spring:
       logging:
         level:
