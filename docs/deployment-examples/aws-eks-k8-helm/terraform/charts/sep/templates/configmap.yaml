@@ -9,16 +9,16 @@ data:
     stellar:
       anchor:
         config: in-memory
-        app_config:
+        app-config:
           type: config-spring-property                # Activate [config-spring-property] module
-          settings: app_config                        # The location of the configuration data
+          settings: app-config                        # The location of the configuration data
         data-access:
           type: data-spring-jdbc                      # Activate [config-spring-jdbc] module.
           settings: data-spring-jdbc-sqlite           # The location of the configuration data in this file.
         logging:
           type: logging-logback
           settings: logging-logback-settings
-    app_config:
+    app-config:
       app:
         stellarNetworkPassphrase: Test SDF Network ; September 2015
         hostUrl: {{ .Values.stellar.app_config.app.hostUrl }}
