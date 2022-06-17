@@ -7,7 +7,7 @@ image:
    repo: stellar
    name: anchor-platform
    tag: 043ce5b
-   pullPolicy: always
+   pullPolicy: Always
 ingress:
    annotations:
       cert-manager.io/cluster-issuer: "letsencrypt-staging"
