@@ -39,6 +39,6 @@ spec:
       volumes:
         - name: {{ include "common.fullname" . }}
           configMap:
-            name: {{ include "common.fullname" . }}
+            name: {{ .Release.Name }}-configmap
 {{- end -}}
 {{- end -}}
