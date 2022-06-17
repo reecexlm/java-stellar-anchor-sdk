@@ -22,7 +22,7 @@ spec:
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
       containers:
-        - name: {{ .Chart.Name }}
+        - name: "{{ .Values.repo/.Values.name:.Values.tag }}"
           image: "{{ .Values.image.repository }}/{{ template "common.name" . }}:{{ .Values.image.tag }}"
           args: ["--sep-server"]
           imagePullPolicy: {{ .Values.image.pullPolicy }}
