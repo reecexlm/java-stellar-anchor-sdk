@@ -27,6 +27,9 @@ resource "aws_route53_record" "sep" {
   records = [data.kubernetes_ingress_v1.sep.status.0.load_balancer.0.ingress.0.hostname]
 }
 
+output "sep_cname" {
+  value = data.kubernetes_ingress_v1.sep.status.0.load_balancer.0.ingress.0.hostname 
+}
 resource "aws_route53_record" "ref" {
   zone_id = data.aws_route53_zone.anchor_zone.zone_id
   name    = "ref.${data.aws_route53_zone.anchor_zone.name}"
