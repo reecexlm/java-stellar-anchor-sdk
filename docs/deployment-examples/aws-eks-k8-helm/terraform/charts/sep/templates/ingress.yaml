@@ -2,23 +2,21 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ .Release.Name }}-ingress
-  namespace: anchor-platform
+  namespace: {{ .Values.namespace }}
   annotations:
-    cert-manager.io/cluster-issuer: "letsencrypt-staging"
-    ingress.kubernetes.io/ssl-redirect: "true"
-    ingress.kubernetes.io/browser-xss-filter: "true"
-    ingress.kubernetes.io/frame-deny: "true"
-    ingress.kubernetes.io/content-type-nosniff: "true"
-    ingress.kubernetes.io/hsts-max-age: "31536000"
-    ingress.kubernetes.io/hsts-include-subdomains: "true"
-    nginx.ingress.kubernetes.io/auth-keepalive-timeout: '300'
-    nginx.ingress.kubernetes.io/proxy-connect-timeout: '300'
+      {{- with .Values.ingress.annotations }}
 spec:
+  {{- if .Values.ingress.tls }}
   tls:
+  {{- range .Values.ingress.tls }}
     - hosts:
-      - www.stellaranchordemo.com
-      secretName: letsencrypt-staging
-  ingressClassName: nginx
+      {{- range .hosts }}
+        - {{ . | quote }}
+      {{- end }}
+      secretName: {{ .secretName }}
+    {{- end }}
+  {{- end }}
+  ingressClassName: {{ .Values.ingress.ingressClassName }}
   rules:
   - host: www.stellaranchordemo.com
     http:
