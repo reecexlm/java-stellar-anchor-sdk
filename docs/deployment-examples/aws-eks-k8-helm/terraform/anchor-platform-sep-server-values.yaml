@@ -19,9 +19,9 @@ ingress:
       ingress.kubernetes.io/hsts-include-subdomains: "true"
    ingressClassName: nginx
 tls:
-    - hosts:
+   hosts:
       - www.stellaranchordemo.com
-      secretName: letsencrypt-staging
+   secretName: letsencrypt-staging
 stellar:
    anchor:
       config: in-memory
