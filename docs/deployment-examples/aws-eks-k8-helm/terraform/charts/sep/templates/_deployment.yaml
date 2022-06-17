@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}/{{ .Values.image.name }}:{{ .Values.image.tag }}"
+          image: "{{ .Values.image.repo }}/{{ .Values.image.name }}:{{ .Values.image.tag }}"
           args: ["--sep-server"]
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           volumeMounts:
