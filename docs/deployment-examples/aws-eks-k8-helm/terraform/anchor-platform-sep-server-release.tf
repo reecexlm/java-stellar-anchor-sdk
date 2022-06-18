@@ -11,7 +11,9 @@ locals {
 }
 resource "helm_release" "sep" {
   name             = "sep-server"
-  chart            = "./charts/sep"
+  #chart            = "./charts/sep"
+  repository       = "http://anchorplatformhelmchart.s3-website.us-east-2.amazonaws.com"
+  chart            = "sep"
   namespace        = "anchor-platform"
   version          = "17.1.3"
   create_namespace = true
