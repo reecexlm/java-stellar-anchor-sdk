@@ -5,10 +5,13 @@ metadata:
   namespace: {{ .Values.namespace }}
   #{{- if .Values.ingress.annotations }}
   annotations:
-    {{- range $key, $value := .Values.ingress.annotations }}
-      {{ $key }}: {{ $value }}
-    {{- end }}
-  #{{- end }}
+    cert-manager.io/cluster-issuer: "letsencrypt-staging"
+    ingress.kubernetes.io/ssl-redirect: "true"
+    ingress.kubernetes.io/browser-xss-filter: "true"
+    ingress.kubernetes.io/frame-deny: "true"
+    ingress.kubernetes.io/content-type-nosniff: "true"
+    ingress.kubernetes.io/hsts-max-age: "31536000"
+    ingress.kubernetes.io/hsts-include-subdomains: "true"
 spec:
   tls:
       - hosts:
