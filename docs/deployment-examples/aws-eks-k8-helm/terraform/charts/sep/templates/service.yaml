@@ -10,6 +10,4 @@ spec:
     port: {{ .Values.service.servicePort }}       # port number the service will listen on
     targetPort: {{ .Values.service.targetPort }}  # port number pods listen on
   selector:
-    app.kubernetes.io/name: {{ include "common.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
     app: sep

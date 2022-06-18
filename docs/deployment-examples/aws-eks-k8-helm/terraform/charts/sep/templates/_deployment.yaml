@@ -11,8 +11,7 @@ spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ include "common.name" . }}
-      app.kubernetes.io/instance: {{ .Release.Name }}
+        app: sep
   template:
     metadata:
       annotations:
