@@ -10,12 +10,10 @@ metadata:
     {{- end }}
   {{- end }}
 spec:
-  {{- if .Values.ingress.tls }}
   tls:
     - hosts:
-      - {{ .Values.ingress.tls.tlsHost }} 
+        - {{ .Values.ingress.tls.tlsHost }} 
       secretName: {{ .Values.ingress.tls.secretName }}
-  {{- end }}
   rules:
   - host: www.stellaranchordemo.com
     http:
