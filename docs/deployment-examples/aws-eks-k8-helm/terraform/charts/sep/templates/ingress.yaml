@@ -3,9 +3,12 @@ kind: Ingress
 metadata:
   name: {{ .Release.Name }}-ingress
   namespace: {{ .Values.namespace }}
-  annotations:
-      {{- with .Values.ingress.annotations }}
-      {{- end }}
+    {{- if .Values.annotations }}
+    annotations:
+    {{- range $key, $value := .Values.annotations }}
+      {{ $key }}: {{ $value }}
+    {{- end }}
+    {{- end }}
 spec:
   {{- if .Values.ingress.tls }}
   tls:
