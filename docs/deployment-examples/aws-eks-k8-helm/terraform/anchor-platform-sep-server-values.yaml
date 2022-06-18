@@ -3,6 +3,7 @@ service:
    containerPort: 8080
    servicePort: 8080
    replicas: 1
+   type: ClusterIP
 image: 
    repo: stellar
    name: anchor-platform
