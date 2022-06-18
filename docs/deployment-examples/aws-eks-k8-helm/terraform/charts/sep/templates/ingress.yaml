@@ -13,7 +13,7 @@ spec:
   ingressClassName: nginx
   tls:
       - hosts:
-        - www.stellaranchordemo.com
+        - {{ .Values.ingress.tls.tlsHost }}
         secretName: letsencrypt-staging
   rules:
   - host: www.stellaranchordemo.com
