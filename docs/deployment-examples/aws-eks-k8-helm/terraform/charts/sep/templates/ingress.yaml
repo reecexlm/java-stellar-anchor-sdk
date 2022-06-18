@@ -10,11 +10,11 @@ metadata:
     {{- end }}
   {{- end }}
 spec:
-  ingressClassName: nginx
+  ingressClassName: {{ .Values.ingress.tls.ingressClassName }}
   tls:
       - hosts:
         - {{ .Values.ingress.tls.tlsHost }}
-        secretName: letsencrypt-staging
+        secretName: {{ .Values.ingress.tls.secretName }}
   rules:
   - host: www.stellaranchordemo.com
     http:
