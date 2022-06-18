@@ -3,9 +3,9 @@ kind: Ingress
 metadata:
   name: {{ .Release.Name }}-ingress
   namespace: {{ .Values.namespace }}
-    {{- if .Values.annotations }}
+    {{- if .Values.ingress.annotations }}
     annotations:
-    {{- range $key, $value := .Values.annotations }}
+    {{- range $key, $value := .Values.ingress.annotations }}
       {{ $key }}: {{ $value }}
     {{- end }}
     {{- end }}
