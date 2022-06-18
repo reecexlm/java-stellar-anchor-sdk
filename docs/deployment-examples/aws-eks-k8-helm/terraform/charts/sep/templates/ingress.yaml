@@ -12,9 +12,9 @@ metadata:
 spec:
   tls:
     - hosts:
-  {{- range $host := .Values.ingress.tls.hosts }}
-      - {{ $host }}
-  {{- end }}
+    {{- range .Values.ingress.tls.hosts }}
+      - {{ . }}
+    {{- end }}    
     secretName: {{ .Values.ingress.tls.secretName }}
   rules:
   - host: www.stellaranchordemo.com
