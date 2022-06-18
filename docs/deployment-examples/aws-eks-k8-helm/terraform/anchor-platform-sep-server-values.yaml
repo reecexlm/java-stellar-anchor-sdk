@@ -20,7 +20,7 @@ ingress:
    ingressClassName: nginx
    tls:
       secretName: "letsencrypt-staging"
-      tlsHost: "www.stellaranchordemo.com"
+      tlsHost: "www.anchordemo.org"
 stellar:
    anchor:
       config: in-memory
@@ -36,7 +36,7 @@ stellar:
    app_config:
       app:
          stellarNetworkPassphrase: Test SDF Network ; September 2015
-         hostUrl: https://www.stellaranchordemo.com
+         hostUrl: https://www.anchordemo.org
          languages: en
          horizonUrl: https://horizon-testnet.stellar.org
          assets: assets-test.json
@@ -46,7 +46,7 @@ stellar:
          stellarFile: file:/config/stellar-wks.toml
       sep10:
          enabled: true
-         homeDomain: www.stellaranchordemo.com
+         homeDomain: www.anchordemo.org
          clientAttributionRequired: false
          clientAttributionAllowList: lobstr.co,preview.lobstr.co # use this if we want to white list
          # clientAttributionDenyList: # use this if we want to black list.
@@ -55,18 +55,18 @@ stellar:
          signingSeed: SBTBRGMPWNLXOZQQQXXZRJKCZPYTAZT5FC4VEAECF2HOBCONTSH4EXKS
       sep12:
          enabled: true
-         customerIntegrationEndpoint: http://ref.stellaranchordemo.com
+         customerIntegrationEndpoint: http://ref.anchordemo.org
       sep24:
          enabled: true
          interactiveJwtExpiration: 3600
-         interactiveUrl: http://ref.stellaranchordemo.com/sep24/interactive
+         interactiveUrl: http://ref.anchordemo.org/sep24/interactive
       sep31:
          enabled: true
-         feeIntegrationEndPoint: http://ref.stellaranchordemo.com
+         feeIntegrationEndPoint: http://ref.anchordemo.org
          depositInfoGeneratorType: self # self or circle
       sep38:
          enabled: true
-         quoteIntegrationEndPoint: http://ref.stellaranchordemo.com
+         quoteIntegrationEndPoint: http://ref.anchordemo.org
       circle:
          circleUrl: https://api-sandbox.circle.com
          apiKey: secret # circle API key

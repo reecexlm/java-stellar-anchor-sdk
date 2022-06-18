@@ -5,7 +5,7 @@ metadata:
 spec:
   secretName: letsencrypt-staging
   dnsNames:
-  - www.stellaranchordemo.com
+  - www.anchordemo.org
   issuerRef:
     name: letsencrypt-staging
     # We can reference ClusterIssuers by changing the kind here.

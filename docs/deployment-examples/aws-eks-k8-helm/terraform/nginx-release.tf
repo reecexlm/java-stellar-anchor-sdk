@@ -19,7 +19,7 @@ resource "helm_release" "ingress-nginx" {
 }
 
 #resource "aws_route53_zone" "anchorzone" {
-#  name = "stellaranchordemo.com"
+#  name = "anchordemo.org"
 #}
 
 #data "aws_route53_zone" "anchorzonedata" {
@@ -29,7 +29,7 @@ resource "helm_release" "ingress-nginx" {
 
 #resource "aws_route53_record" "anchor_record" {
 #  zone_id = data.aws_route53_zone.anchorzonedata.zone_id
-#  name    = "www.stellaranchordemo.com"
+#  name    = "www.anchordemo.org"
 #  type    = "CNAME"
 #  ttl     = "300"
 #  records = [local.s_template_vars.sep_endpoint]
