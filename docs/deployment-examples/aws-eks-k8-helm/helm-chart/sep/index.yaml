@@ -3,7 +3,16 @@ entries:
   sep:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2022-06-18T09:00:46.875635-07:00"
+    created: "2022-06-18T10:55:49.891038-07:00"
+    description: Sep Helm chart for Kubernetes
+    digest: cba4ac46290d9381005f7687b3c5151454491ad7621dba38de3892a97987a47f
+    name: sep
+    urls:
+    - sep-0.2.99.tgz
+    version: 0.2.99
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: "2022-06-18T10:55:49.890851-07:00"
     description: Sep Helm chart for Kubernetes
     digest: f5d0fca21b5fc13b01bfaebe710684bfe289935e2e5548dd868cb43ab8238bd6
     name: sep
@@ -12,11 +21,11 @@ entries:
     version: 0.2.98
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2022-06-18T09:00:46.875351-07:00"
+    created: "2022-06-18T10:55:49.890562-07:00"
     description: Sep Helm chart for Kubernetes
     digest: 2d7c70a47ee3dd2b4cfa37b165d9bdb42e37f0fb0c298609950fe42ca80ff77b
     name: sep
     urls:
     - sep-0.2.95.tgz
     version: 0.2.95
-generated: "2022-06-18T09:00:46.874584-07:00"
+generated: "2022-06-18T10:55:49.889889-07:00"
