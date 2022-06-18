@@ -4,6 +4,7 @@ service:
    servicePort: 8080
    replicas: 1
    type: ClusterIP
+   name: sep
 image: 
    repo: stellar
    name: anchor-platform
