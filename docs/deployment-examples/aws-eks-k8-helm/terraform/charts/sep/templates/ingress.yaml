@@ -14,7 +14,7 @@ spec:
   tls:
     - hosts:
       - {{ .Values.ingress.tls.tlsHost }} 
-    secretName: {{ .Values.ingress.tls.secretName }}
+      secretName: {{ .Values.ingress.tls.secretName }}
   {{- end }}
   rules:
   - host: www.stellaranchordemo.com
