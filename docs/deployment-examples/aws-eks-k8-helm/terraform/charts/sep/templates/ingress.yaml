@@ -3,7 +3,6 @@ kind: Ingress
 metadata:
   name: {{ .Release.Name }}-ingress
   namespace: {{ .Values.namespace }}
-  #{{- if .Values.ingress.annotations }}
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-staging"
     ingress.kubernetes.io/ssl-redirect: "true"
@@ -14,9 +13,9 @@ metadata:
     ingress.kubernetes.io/hsts-include-subdomains: "true"
 spec:
   tls:
-      - hosts:
-          - {{ .Values.ingress.tls.tlsHost }} 
-        secretName: {{ .Values.ingress.tls.secretName }}
+    - hosts:
+        - {{ .Values.ingress.tls.tlsHost }} 
+      secretName: {{ .Values.ingress.tls.secretName }}
   rules:
   - host: www.stellaranchordemo.com
     http:
