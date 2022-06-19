@@ -12,7 +12,7 @@ image:
    pullPolicy: Always
 ingress:
    annotations:
-      alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}]'
+      alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80},{"HTTPS":443}]'
       ingress.kubernetes.io/ssl-redirect: "true"
       ingress.kubernetes.io/browser-xss-filter: "true"
       ingress.kubernetes.io/frame-deny: "true"
