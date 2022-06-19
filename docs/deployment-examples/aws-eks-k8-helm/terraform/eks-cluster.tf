@@ -332,15 +332,13 @@ module "eks" {
       instance_types = ["t3.micro"]
       desired_size = 6
       min_size     = 6
-      max_size     = 6
+      max_size     = 8
 
-        labels = {
+        tags = {
           Environment = "dev"
           Terraform   = "true"
         }
     }
-
-
   }
 }
 

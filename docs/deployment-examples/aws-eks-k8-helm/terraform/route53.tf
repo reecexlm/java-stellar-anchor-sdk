@@ -35,7 +35,5 @@ resource "aws_route53_record" "ref" {
   name    = "ref.${data.aws_route53_zone.anchor_zone.name}"
   type    = "CNAME"
   ttl     = "300"
-  #records = [data.kubernetes_service.ref_service.status.0.load_balancer.0.ingress.0.hostname]
   records = [data.kubernetes_ingress_v1.ref.status.0.load_balancer.0.ingress.0.hostname]
-  #records = [data.kubernetes_ingress_v1.ref_ingress.load_balancer_ingress.0.hostname]
 }

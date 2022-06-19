@@ -4,9 +4,7 @@
 module "acm" {
     source  = "terraform-aws-modules/acm/aws"
     version = "~> 3.0"
-
-
-
+    
   zone_id     = data.aws_route53_zone.anchor_zone.zone_id
   domain_name = local.domain_name
 
