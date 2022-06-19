@@ -334,7 +334,7 @@ module "eks" {
       min_size     = 4
       max_size     = 4
 
-        tags = {
+        labels = {
           Environment = "dev"
           Terraform   = "true"
           app = "sep"
@@ -350,7 +350,7 @@ module "eks" {
       min_size     = 2
       max_size     = 2
 
-        tags = {
+        labels = {
           app = "reference"
           Terraform   = "true"
         }
