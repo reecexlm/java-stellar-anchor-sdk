@@ -338,7 +338,6 @@ module "eks" {
           Environment = "dev"
           Terraform   = "true"
           app = "sep"
-          "app.kubernetes.io/name" = "sep"
         }
     }
 
