@@ -11,7 +11,7 @@ spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ .Values.service.name }}
+      app.kubernetes.io/name: {{ .Values.service.name }}
   template:
     metadata:
       annotations:
