@@ -15,7 +15,7 @@ resource "helm_release" "sep" {
   repository       = "http://anchorplatformhelmchart.s3-website.us-east-2.amazonaws.com"
   chart            = "sep"
   namespace        = "anchor-platform"
-  version          = "0.3.06"
+  version          = "0.3.07"
   create_namespace = true
   wait             = true
   reset_values     = true

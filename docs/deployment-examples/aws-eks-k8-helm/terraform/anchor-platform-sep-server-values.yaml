@@ -19,7 +19,7 @@ ingress:
       ingress.kubernetes.io/content-type-nosniff: "true"
       ingress.kubernetes.io/hsts-max-age: "31536000"
       ingress.kubernetes.io/hsts-include-subdomains: "true"
-      alb.ingress.kubernetes.io/scheme: external
+      alb.ingress.kubernetes.io/scheme: internet-facing
       alb.ingress.kubernetes.io/healthcheck-path: /health
    ingressClassName: alb
    tls:
