@@ -3,7 +3,7 @@ service:
    containerPort: 8080
    servicePort: 8080
    replicas: 1
-   type: ClusterIP
+   type: NodePort
    name: sep
 image: 
    repo: stellar
@@ -19,7 +19,9 @@ ingress:
       ingress.kubernetes.io/content-type-nosniff: "true"
       ingress.kubernetes.io/hsts-max-age: "31536000"
       ingress.kubernetes.io/hsts-include-subdomains: "true"
-   ingressClassName: nginx
+      alb.ingress.kubernetes.io/scheme: external
+      alb.ingress.kubernetes.io/healthcheck-path: /health
+   ingressClassName: alb
    tls:
       secretName: "letsencrypt-staging"
       tlsHost: "www.anchordemo.org"
