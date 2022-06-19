@@ -22,6 +22,9 @@ ingress:
       alb.ingress.kubernetes.io/scheme: internet-facing
       alb.ingress.kubernetes.io/healthcheck-path: /health
    ingressClassName: alb
+   tls:
+      secretName: "letsencrypt-staging"
+      tlsHost: "www.anchordemo.org"
 stellar:
    anchor:
       config: in-memory
