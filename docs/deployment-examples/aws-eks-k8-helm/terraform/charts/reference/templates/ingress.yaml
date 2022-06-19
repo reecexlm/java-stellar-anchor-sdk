@@ -9,7 +9,7 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
-    - host: ref.anchordemo.org
+    - host: ref.stellaranchordemo.com
       http:
         paths:
           - path: /
