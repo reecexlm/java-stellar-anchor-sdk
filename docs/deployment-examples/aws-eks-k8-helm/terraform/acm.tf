@@ -1,5 +1,5 @@
 resource "aws_acm_certificate" "sep" {
-  domain_name               = "www.${data.aws_route53_zone.anchor-zone.name}"
+  domain_name               = "www.${data.aws_route53_zone.anchor_zone.name}"
   validation_method         = "DNS"
 lifecycle {
     create_before_destroy = true
