@@ -14,11 +14,17 @@ resource "aws_route53_record" "validation" {
       type   = dvo.resource_record_type
     }
   }
+  allow_overwrite = true
+  name            = each.value.name
+  records         = [each.value.record]
+  ttl             = 60
+  type            = each.value.type
+  zone_id         = data.aws_route53_zone.anchor_zone.zone_id
 }
 
 resource "aws_acm_certificate_validation" "acm_certificate_validation" {
- certificate_arn = aws_acm_certificate.cert.arn
- validation_record_fqdns = [aws_route53_record.validation.fqdn]
+ certificate_arn = aws_acm_certificate.sep.arn
+ validation_record_fqdns = [for record in aws_route53_record.validation : record.fqdn]
 }
 
 output "validation_records" {
