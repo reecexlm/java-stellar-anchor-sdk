@@ -342,7 +342,7 @@ module "eks" {
         }
     }
 
-   common = {
+   ref = {
       
       capacity_type = "SPOT"
       instance_types = ["t3.micro"]
