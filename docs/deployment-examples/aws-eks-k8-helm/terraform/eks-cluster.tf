@@ -330,15 +330,32 @@ module "eks" {
       
       capacity_type = "SPOT"
       instance_types = ["t3.micro"]
-      desired_size = 6
-      min_size     = 6
-      max_size     = 8
+      desired_size = 4
+      min_size     = 4
+      max_size     = 4
 
         tags = {
           Environment = "dev"
           Terraform   = "true"
+          app = "sep"
+          "app.kubernetes.io/name" = "sep"
         }
     }
+
+   common = {
+      
+      capacity_type = "SPOT"
+      instance_types = ["t3.micro"]
+      desired_size = 2
+      min_size     = 2
+      max_size     = 2
+
+        tags = {
+          app = "reference"
+          Terraform   = "true"
+        }
+    }
+
   }
 }
 
