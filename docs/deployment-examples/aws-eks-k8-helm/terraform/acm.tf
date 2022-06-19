@@ -1,6 +1,6 @@
 resource "aws_acm_certificate" "cert" {
   domain_name               = "www.${data.aws_route53_zone.anchor_zone.name}"
-  validation_method         = "DNS"
+  validation_method         = "EMAIL"
 lifecycle {
     create_before_destroy = true
   }
