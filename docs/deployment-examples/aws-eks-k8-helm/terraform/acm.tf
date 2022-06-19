@@ -9,7 +9,7 @@ lifecycle {
 
 resource "aws_acm_certificate_validation" "acm_certificate_validation" {
  certificate_arn = aws_acm_certificate.cert.arn
- validation_record_fqdns = [for record in aws_route53_record.sep : record.fqdn]
+ validation_record_fqdns = [aws_route53_record.sep.fqdn]
 }
 
 output "validation_records" {
