@@ -1,14 +1,15 @@
+  locals {
+      domain_name = data.aws_route53_zone.anchor_zone.name
+  }
 module "acm" {
     source  = "terraform-aws-modules/acm/aws"
     version = "~> 3.0"
 
-  locals {
-      domain_name = data.aws_route53_zone.anchor_zone.name
-  }
+
 
   zone_id     = data.aws_route53_zone.anchor_zone.zone_id
   domain_name = local.domain_name
-  
+
   subject_alternative_names = [
     "*.${local.domain_name}"
   ]
