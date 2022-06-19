@@ -14,6 +14,7 @@ resource "aws_route53_record" "validation" {
       type   = dvo.resource_record_type
     }
   }
+}
 
 resource "aws_acm_certificate_validation" "acm_certificate_validation" {
  certificate_arn = aws_acm_certificate.cert.arn
