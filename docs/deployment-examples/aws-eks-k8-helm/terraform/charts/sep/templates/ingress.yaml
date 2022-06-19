@@ -21,66 +21,10 @@ spec:
   - host: {{ .Values.ingress.tls.tlsHost }}
     http:
       paths:
-      - path: /info
-        pathType: Prefix
-        backend:
-          service:
-            name: {{ .Release.Name }}-service
-            port:
-              number: {{ .Values.service.servicePort }} 
-      - path: /.well-known/stellar.toml
+      - path: /
         pathType: Prefix
         backend:
           service:
             name: {{ .Release.Name }}-service
             port:
               number: {{ .Values.service.servicePort }}
-      - path: /auth
-        pathType: Exact
-        backend:
-          service:
-            name: {{ .Release.Name }}-service
-            port:
-              number: {{ .Values.service.servicePort }} 
-      - path: /sep6
-        pathType: Prefix
-        backend:
-          service:
-            name: {{ .Release.Name }}-service
-            port:
-              number: {{ .Values.service.servicePort }} 
-      - path: /sep12
-        pathType: Prefix
-        backend:
-          service:
-            name: {{ .Release.Name }}-service
-            port:
-              number: {{ .Values.service.servicePort }}       
-      - path: /sep24
-        pathType: Prefix
-        backend:
-          service:
-            name: {{ .Release.Name }}-service
-            port:
-              number: {{ .Values.service.servicePort }} 
-      - path: /sep31
-        pathType: Prefix
-        backend:
-          service:
-            name: {{ .Release.Name }}-service
-            port:
-              number: {{ .Values.service.servicePort }} 
-      - path: /sep38
-        pathType: Prefix
-        backend:
-          service:
-            name: {{ .Release.Name }}-service
-            port:
-              number: {{ .Values.service.servicePort }} 
-      - path: /customer
-        pathType: Prefix
-        backend:
-          service:
-            name: {{ .Release.Name }}-service
-            port:
-              number: {{ .Values.service.servicePort }} 
