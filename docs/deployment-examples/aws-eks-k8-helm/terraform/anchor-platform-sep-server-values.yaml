@@ -8,7 +8,7 @@ service:
 image: 
    repo: stellar
    name: anchor-platform
-   tag: 043ce5b
+   tag: 022afab
    pullPolicy: Always
 ingress:
    annotations:
@@ -33,7 +33,7 @@ stellar:
    app_config:
       app:
          stellarNetworkPassphrase: Test SDF Network ; September 2015
-         hostUrl: https://www.anchordemo.org
+         hostUrl: https://www.stellaranchordemo.com
          languages: en
          horizonUrl: https://horizon-testnet.stellar.org
          assets: assets-test.json
@@ -43,7 +43,7 @@ stellar:
          stellarFile: file:/config/stellar-wks.toml
       sep10:
          enabled: true
-         homeDomain: www.anchordemo.org
+         homeDomain: www.stellaranchordemo.com
          clientAttributionRequired: false
          clientAttributionAllowList: lobstr.co,preview.lobstr.co # use this if we want to white list
          # clientAttributionDenyList: # use this if we want to black list.
@@ -52,18 +52,18 @@ stellar:
          signingSeed: SBTBRGMPWNLXOZQQQXXZRJKCZPYTAZT5FC4VEAECF2HOBCONTSH4EXKS
       sep12:
          enabled: true
-         customerIntegrationEndpoint: http://ref.anchordemo.org
+         customerIntegrationEndpoint: http://ref.stellaranchordemo.com
       sep24:
          enabled: true
          interactiveJwtExpiration: 3600
-         interactiveUrl: http://ref.anchordemo.org/sep24/interactive
+         interactiveUrl: http://ref.stellaranchordemo.com/sep24/interactive
       sep31:
          enabled: true
-         feeIntegrationEndPoint: http://ref.anchordemo.org
+         feeIntegrationEndPoint: http://ref.stellaranchordemo.com
          depositInfoGeneratorType: self # self or circle
       sep38:
          enabled: true
-         quoteIntegrationEndPoint: http://ref.anchordemo.org
+         quoteIntegrationEndPoint: http://ref.stellaranchordemo.com
       circle:
          circleUrl: https://api-sandbox.circle.com
          apiKey: secret # circle API key
