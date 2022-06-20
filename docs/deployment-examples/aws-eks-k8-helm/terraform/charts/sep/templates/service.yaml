@@ -10,8 +10,8 @@ metadata:
 {{- end }}
 {{- end }}
   labels:
-    app.kubernetes.io/name: {{ include .Values.fullName }}-svc-{{ service.name }}
-    helm.sh/chart: {{ include "microservice.chart" $root }}
+    app.kubernetes.io/name: {{ .Values.fullName }}-svc-{{ service.name }}
+    helm.sh/chart: {{ $.Chart.Name }}-{{ $.Chart.Version }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:
