@@ -10,7 +10,7 @@ metadata:
 {{- end }}
 {{- end }}
   labels:
-    app.kubernetes.io/name: {{ .Values.fullName }}-svc-{{ service.name }}
+    app.kubernetes.io/name: {{ .Values.fullName }}-svc-{{ .Values.service.name }}
     helm.sh/chart: {{ $.Chart.Name }}-{{ $.Chart.Version }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
