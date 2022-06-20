@@ -12,7 +12,7 @@ spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ .Values.service.name }}
+      app.kubernetes.io/name: {{ .Values.fullName }}-deploy-{{ .Values.service.name }}
   template:
     metadata:
       labels:
