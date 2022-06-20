@@ -6,7 +6,7 @@ data "aws_route53_zone" "anchor_zone" {
 data "kubernetes_ingress_v1" "sep" {
   metadata {
     namespace = "anchor-platform"
-    name = "sep-server-ingress"
+    name = "anchor-platform-ing-sep"
   }
   depends_on = [resource.helm_release.sep]
 }
