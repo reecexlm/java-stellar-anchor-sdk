@@ -4,12 +4,12 @@ metadata:
 metadata:
   name: {{ .Values.fullName }}-ing-{{ .Values.service.name }}
   namespace: {{ .Values.namespace }}
-{{- if .Values.ingress.annotations }}
+  {{- if .Values.ingress.annotations }}
   annotations:
-{{- range $key, $value := .Values.ingress.annotations }}
-      {{ $key }}: {{ $value }}
-{{- end }}
-{{- end }}
+    {{- range $key, $value := .Values.ingress.annotations }}
+    {{ $key }}: {{ $value | quote }}
+    {{- end }}
+  {{- end }}
   labels:
     app.kubernetes.io/name: {{ .Values.fullName }}-ing-{{ .Values.service.name }}
     helm.sh/chart: {{ $.Chart.Name }}-{{ $.Chart.Version }}
