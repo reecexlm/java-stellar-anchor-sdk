@@ -4,9 +4,9 @@ metadata:
 metadata:
   name: {{ .Values.fullName }}-ing-{{ .Values.service.name }}
   namespace: {{ .Values.namespace }}
-{{- if .Values.service.annotations }}
+{{- if .Values.ingress.annotations }}
   annotations:
-{{- range $key, $value := .Values.service.annotations }}
+{{- range $key, $value := .Values.ingress.annotations }}
       {{ $key }}: {{ $value }}
 {{- end }}
 {{- end }}
