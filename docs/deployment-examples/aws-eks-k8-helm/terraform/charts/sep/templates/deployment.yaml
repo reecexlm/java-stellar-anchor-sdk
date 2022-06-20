@@ -1,1 +1,50 @@
-{{- template "anchorplatform.deployment" . -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.fullName }}-deploy-{{ .Values.service.name }}
+  namespace: {{ .Values.namespace }}
+{{- if .Values.service.annotations }}
+  annotations:
+{{- range $key, $value := .Values.service.annotations }}
+      {{ $key }}: {{ $value }}
+{{- end }}
+{{- end }}
+  labels:
+    app.kubernetes.io/name: {{ .Values.fullName }}-deploy-{{ .Values.service.name }}
+    helm.sh/chart: {{ $.Chart.Name }}-{{ $.Chart.Version }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ .Values.service.name }}
+  template:
+    metadata:
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+      labels:
+        app.kubernetes.io/name: {{ include "common.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repo }}/{{ .Values.image.name }}:{{ .Values.image.tag }}"
+          args: ["--sep-server"]
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          volumeMounts:
+          - name: {{ include "common.fullname" . }}
+            mountPath: /config
+            readOnly: true
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+      volumes:
+        - name: {{ include "common.fullname" . }}
+          configMap:
+            name: {{ .Release.Name }}-configmap
+{{- end -}}
+{{- end -}}

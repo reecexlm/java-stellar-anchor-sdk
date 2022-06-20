@@ -1,7 +1,8 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ .Release.Name }}-configmap
+metadata:
+  name: {{ .Values.fullName }}-configmap-{{ .Values.service.name }}
   namespace: {{ .Values.namespace }}
 data:
   # TODO: remove all secrets (ex: move to env vars, k8s secrets, vault, etc...)
