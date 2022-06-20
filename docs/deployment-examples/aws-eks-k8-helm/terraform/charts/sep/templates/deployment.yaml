@@ -3,12 +3,6 @@ kind: Deployment
 metadata:
   name: {{ .Values.fullName }}-deploy-{{ .Values.service.name }}
   namespace: {{ .Values.namespace }}
-{{- if .Values.deployment.annotations }}
-  annotations:
-{{- range $key, $value := .Values.service.annotations }}
-      {{ $key }}: {{ $value }}
-{{- end }}
-{{- end }}
   labels:
     app.kubernetes.io/name: {{ .Values.fullName }}-deploy-{{ .Values.service.name }}
     helm.sh/chart: {{ $.Chart.Name }}-{{ $.Chart.Version }}

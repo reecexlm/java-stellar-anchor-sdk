@@ -10,7 +10,6 @@ image:
    name: anchor-platform
    tag: 022afab
    pullPolicy: Always
-deployment:
 ingress:
    annotations:
       alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}]'
