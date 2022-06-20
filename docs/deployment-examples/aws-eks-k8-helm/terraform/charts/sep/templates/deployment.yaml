@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: {{ .Values.fullName }}-deploy-{{ .Values.service.name }}
   namespace: {{ .Values.namespace }}
-{{- if .Values.service.annotations }}
+{{- if .Values.deployment.annotations }}
   annotations:
 {{- range $key, $value := .Values.service.annotations }}
       {{ $key }}: {{ $value }}
@@ -21,11 +21,11 @@ spec:
       app.kubernetes.io/name: {{ .Values.service.name }}
   template:
     metadata:
-      annotations:
-        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
       labels:
-        app.kubernetes.io/name: {{ include "common.name" . }}
+        app.kubernetes.io/name: {{ .Values.fullName }}-deploy-{{ .Values.service.name }}
+        helm.sh/chart: {{ $.Chart.Name }}-{{ $.Chart.Version }}
         app.kubernetes.io/instance: {{ .Release.Name }}
+        app.kubernetes.io/managed-by: {{ .Release.Service }}
     spec:
       containers:
         - name: {{ .Chart.Name }}
@@ -33,7 +33,7 @@ spec:
           args: ["--sep-server"]
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           volumeMounts:
-          - name: {{ include "common.fullname" . }}
+          - name: config
             mountPath: /config
             readOnly: true
           ports:
@@ -41,10 +41,7 @@ spec:
               containerPort: 8080
               protocol: TCP
           resources:
-{{ toYaml .Values.resources | indent 12 }}
       volumes:
-        - name: {{ include "common.fullname" . }}
+        - name: config
           configMap:
-            name: {{ .Release.Name }}-configmap
-{{- end -}}
-{{- end -}}
+            name: {{ .Values.fullName }}-configmap-{{ .Values.service.name }}
