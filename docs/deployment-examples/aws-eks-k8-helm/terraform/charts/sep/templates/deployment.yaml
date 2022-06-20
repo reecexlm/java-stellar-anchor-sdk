@@ -11,7 +11,7 @@ spec:
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: {{ .Values.service.name }}
+        app.kubernetes.io/name: {{ .Values.fullName }}-{{ .Values.service.name }}
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
       containers:
