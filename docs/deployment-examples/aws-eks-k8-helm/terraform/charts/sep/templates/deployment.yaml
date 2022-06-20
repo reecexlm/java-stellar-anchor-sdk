@@ -1,17 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.fullName }}-{{ .Values.service.name }}
-  namespace: {{ .Values.namespace }}
+  name: {{ include "common.name" . }}
+  namespace: anchor-platform
+  labels:
+    app.kubernetes.io/name: {{ include "common.name" . }}
+    helm.sh/chart: {{ include "common.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ .Values.fullName }}-{{ .Values.service.name }}
+      app.kubernetes.io/name: {{ .Values.service.name }}
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: {{ .Values.fullName }}-{{ .Values.service.name }}
+        app.kubernetes.io/name: {{ include "common.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
       containers:
@@ -20,7 +25,7 @@ spec:
           args: ["--sep-server"]
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           volumeMounts:
-          - name: config
+          - name: {{ include "common.fullname" . }}
             mountPath: /config
             readOnly: true
           ports:
@@ -30,6 +35,6 @@ spec:
           resources:
 {{ toYaml .Values.resources | indent 12 }}
       volumes:
-        - name: config
+        - name: {{ include "common.fullname" . }}
           configMap:
             name: {{ .Release.Name }}-configmap
