@@ -3,9 +3,9 @@ kind: Service
 metadata:
   name: {{ .Values.fullName }}-svc-{{ .Values.service.name }}
   namespace: {{ .Values.namespace }}
-{{- if service.annotations }}
+{{- if .Values.service.annotations }}
   annotations:
-{{- range $key, $value := service.annotations }}
+{{- range $key, $value := .Values.service.annotations }}
       {{ $key }}: {{ $value }}
 {{- end }}
 {{- end }}
