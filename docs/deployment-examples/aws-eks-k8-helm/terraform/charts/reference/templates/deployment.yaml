@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Release.Name }}-deployment
-  namespace: anchor-platform
+  namespace: {{ .Values.namespace }}
   labels:
     app: reference
 spec:

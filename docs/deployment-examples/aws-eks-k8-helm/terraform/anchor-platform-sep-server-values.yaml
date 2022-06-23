@@ -1,4 +1,5 @@
 fullName: anchor-platform
+namespace: sandbox
 service:
    containerPort: 8080
    servicePort: 8080
@@ -16,6 +17,8 @@ ingress:
       alb.ingress.kubernetes.io/scheme: internet-facing
       alb.ingress.kubernetes.io/healthcheck-path: /health
    ingressClassName: alb
+   labels:
+       app: sep
    tls:
       tlsHost: "www.stellaranchordemo.com"
       secretName: "secret"
