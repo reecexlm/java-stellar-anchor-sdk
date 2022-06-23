@@ -25,7 +25,7 @@ spec:
           args: ["--sep-server"]
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           volumeMounts:
-          - name: config-volume
+          - name: {{ .Values.service.containerVolumeMount | default "config-volume" | quote }}
             mountPath: /config
             readOnly: true
           ports:
@@ -35,6 +35,6 @@ spec:
           resources:
 {{ toYaml .Values.resources | indent 12 }}
       volumes:
-        - name: config
+        - name: {{ .Values.service.containerVolumeMount | default "config-volume" | quote }}
           configMap:
             name: {{ .Values.fullName }}-configmap-{{ .Values.service.name }}

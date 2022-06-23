@@ -6,6 +6,7 @@ metadata:
   {{- if .Values.ingress.metadata }}
   {{- range $key, $value := .Values.ingress.metadata }}
   {{- end }}
+  {{- end }}
   {{- if .Values.ingress.annotations }}
   annotations:
     {{- range $key, $value := .Values.ingress.annotations }}
@@ -15,6 +16,7 @@ metadata:
   labels:
     {{- if .Values.ingress.labels }}
     {{- range $key, $value := .Values.ingress.labels }}
+    {{- end }}
     {{- end }}
     app.kubernetes.io/name: {{ .Values.fullName }}-ing-{{ .Values.service.name }}
     helm.sh/chart: {{ $.Chart.Name }}-{{ $.Chart.Version }}
