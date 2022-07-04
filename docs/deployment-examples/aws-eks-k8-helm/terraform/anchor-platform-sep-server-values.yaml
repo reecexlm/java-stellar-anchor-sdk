@@ -1,5 +1,17 @@
 fullName: anchor-platform
-namespace: sandbox
+namespace: anchor-platform
+serviceAccount:
+   name: myserviceaccount
+rbac:
+   rules:
+      - apiGroups:
+          - "apps"
+        resources:
+          - deployments
+          - statefulsets
+        verbs:
+          - get
+          - list
 service:
    containerPort: 8080
    servicePort: 8080
@@ -22,7 +34,26 @@ ingress:
    tls:
       host: "www.stellaranchordemo.com"
       secretName: "secret"
+   rules:
+      hosts:
+        - host: "www.stellaranchordemo.com"
+          path: /
+          pathType: Prefix
+          backend:
+            servicePort: "{{ .Values.service.containerPort }}"
+            serviceName: "{{ .Values.fullName }}-svc-{{ .Values.service.name }}"
+deployment:
+   envFrom:
+   - secretRef:
+       name: apsigningseed
 stellar:
+   toml:
+      documentation:
+         ORG_NAME: "Stellar Development Foundation"
+         ORG_URL: "https://www.stellar.org"
+         ORG_DESCRIPTION: "Stellar Network"
+         ORG_URL: "https://your_org_url.png"
+         ORG_SUPPORT_EMAIL: "reece@stellar.org"
    anchor:
       config: in-memory
       app-config:
