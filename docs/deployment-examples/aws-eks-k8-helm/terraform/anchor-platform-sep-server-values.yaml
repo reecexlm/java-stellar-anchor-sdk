@@ -20,7 +20,7 @@ ingress:
    labels:
        app: sep
    tls:
-      tlsHost: "www.stellaranchordemo.com"
+      host: "www.stellaranchordemo.com"
       secretName: "secret"
 stellar:
    anchor:

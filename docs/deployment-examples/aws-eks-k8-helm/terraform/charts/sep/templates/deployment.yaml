@@ -2,7 +2,13 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "common.name" . }}
-  namespace: {{ .Values.namespace }}
+  namespace: {{ .Release.Namespace }}
+  {{- if .Values.deployment.annotations }}
+  annotations:
+    {{- range $key, $value := .Values.deployment.annotations }}
+    {{ $key }}: {{ $value | quote }}
+    {{- end }}
+  {{- end }}
   labels:
     app.kubernetes.io/name: {{ include "common.name" . }}
     helm.sh/chart: {{ include "common.chart" . }}
@@ -29,11 +35,18 @@ spec:
             mountPath: /config
             readOnly: true
           ports:
-            - name: http
-              containerPort: {{ .Values.service.containerPort }}
-              protocol: TCP
+          - name: http
+            containerPort: {{ .Values.service.containerPort }}
+            protocol: TCP
+          {{- if (.Values.deployment).envFrom }}
+          envFrom:
+{{ toYaml .Values.deployment.envFrom | indent 12 }}
+          {{- end }}
+          {{- if (.Values.deployment).resources }}
           resources:
-{{ toYaml .Values.resources | indent 12 }}
+{{- toYaml .Values.deployment.resources | indent 12 }}
+          {{- end }}
+        
       volumes:
         - name: {{ .Values.service.containerVolumeMount | default "config-volume" | quote }}
           configMap:

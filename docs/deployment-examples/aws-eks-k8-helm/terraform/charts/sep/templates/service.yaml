@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{ .Values.fullName }}-svc-{{ .Values.service.name }}
-  namespace: {{ .Values.namespace }}
+  namespace: {{ .Release.Namespace }}
 {{- if .Values.service.annotations }}
   annotations:
 {{- range $key, $value := .Values.service.annotations }}
@@ -10,6 +10,10 @@ metadata:
 {{- end }}
 {{- end }}
   labels:
+    {{- if .Values.service.labels }}
+    {{- range $key, $value := .Values.service.labels }}
+    {{- end }}
+    {{- end }}
     app.kubernetes.io/name: {{ .Values.fullName }}-svc-{{ .Values.service.name }}
     helm.sh/chart: {{ $.Chart.Name }}-{{ $.Chart.Version }}
     app.kubernetes.io/instance: {{ .Release.Name }}
@@ -21,4 +25,4 @@ spec:
     port: {{ .Values.service.servicePort }}       # port number the service will listen on
     targetPort: {{ .Values.service.targetPort }}  # port number pods listen on
   selector:
-    app.kubernetes.io/name: {{ .Values.service.name }}
+    app.kubernetes.io/name: {{ .Values.service.name }} 
