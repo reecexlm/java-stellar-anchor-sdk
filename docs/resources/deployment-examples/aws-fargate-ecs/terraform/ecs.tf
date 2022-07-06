@@ -28,6 +28,31 @@ data "aws_ssm_parameter" "jwt_secret" {
 ## Task Definitions
 
 
+resource "aws_iam_policy" "anchor_ssm_secrets" {
+  name        = "anchor_ssm_secrets_policy"
+  path        = "/"
+  description = "RO access to ssm"
+
+  # Terraform's "jsonencode" function converts a
+  # Terraform expression result to valid JSON syntax.
+  policy = jsonencode(
+    {
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ssm:Describe*",
+                "ssm:Get*",
+                "ssm:List*"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+  )
+}
+
 resource "aws_iam_role" "ecs_task_execution_role" {
   name = "anchorplatform-ecsTaskExecutionRole"
  
