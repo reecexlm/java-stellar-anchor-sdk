@@ -46,6 +46,7 @@ resource "aws_iam_role_policy" "codebuild_policy" {
                     "ec2:DescribeSubnets",
                     "ec2:DescribeSecurityGroups",
                     "ec2:DescribeVpcs",
+                    "ec2:DescribeNetworkInterfaces",
                     "ec2:CreateNetworkInterfacePermission"
                 ]
             },
