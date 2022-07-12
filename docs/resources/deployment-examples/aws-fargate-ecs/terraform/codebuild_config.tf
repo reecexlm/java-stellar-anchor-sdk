@@ -28,8 +28,8 @@ resource "aws_iam_role_policy" "codebuild_policy" {
             {
                 "Effect": "Allow",
                 "Resource": [
-                    "arn:aws:logs:us-east-2:245943599471:log-group:/aws/codebuild/anchorplatform-${environment}",
-                    "arn:aws:logs:us-east-2:245943599471:log-group:/aws/codebuild/anchorplatform-${environment}:*"
+                    "arn:aws:logs:us-east-2:245943599471:log-group:/aws/codebuild/anchorplatform-${var.environment}",
+                    "arn:aws:logs:us-east-2:245943599471:log-group:/aws/codebuild/anchorplatform-${var.environment}:*"
                 ],
                 "Action": [
                     "logs:CreateLogGroup",
@@ -40,7 +40,7 @@ resource "aws_iam_role_policy" "codebuild_policy" {
             {
                 "Effect": "Allow",
                 "Resource": [
-                    "arn:aws:s3:::${environment}-anchorconfig"
+                    "arn:aws:s3:::${var.environment}-anchorconfig"
                 ],
                 "Action": [
                     "s3:GetObject",
@@ -59,7 +59,7 @@ resource "aws_iam_role_policy" "codebuild_policy" {
                     "codebuild:BatchPutCodeCoverages"
                 ],
                 "Resource": [
-                    "arn:aws:codebuild:us-east-2:245943599471:report-group/${environment}-anchor-config-*"
+                    "arn:aws:codebuild:us-east-2:245943599471:report-group/${var.environment}-anchor-config-*"
                 ]
             }
         ]
@@ -68,7 +68,7 @@ resource "aws_iam_role_policy" "codebuild_policy" {
 
 
 resource "aws_codebuild_project" "codebuild_config" {
-  name          = "${environment}-anchorplatform-config"
+  name          = "${var.environment}-anchorplatform-config"
   description   = "config image"
   build_timeout = "5"
   service_role  = aws_iam_role.codebuild_role.arn
@@ -86,7 +86,7 @@ resource "aws_codebuild_project" "codebuild_config" {
 
   logs_config {
     cloudwatch_logs {
-      group_name  = "anchorplatform-${environment}-codebuild"
+      group_name  = "anchorplatform-${var.environment}-codebuild"
       stream_name = "codebuild"
     }
   }
@@ -112,6 +112,6 @@ resource "aws_codebuild_project" "codebuild_config" {
   }
 
   tags = {
-    Environment = "${environment}"
+    Environment = "${var.environment}"
   }
 }
