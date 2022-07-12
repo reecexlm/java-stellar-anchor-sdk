@@ -21,7 +21,7 @@ EOF
 resource "aws_iam_role_policy" "codebuild_policy" {
   role = aws_iam_role.example.name
 
-  policy = ${jsonencode(
+  policy = jsonencode(
     {
         "Version": "2012-10-17",
         "Statement": [
@@ -63,9 +63,9 @@ resource "aws_iam_role_policy" "codebuild_policy" {
                 ]
             }
         ]
-    }
-  )}
+    })
 }
+
 
 resource "aws_codebuild_project" "codebuild_config" {
   name          = "${environment}-anchorplatform-config"
