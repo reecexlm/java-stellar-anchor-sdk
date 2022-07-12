@@ -44,7 +44,7 @@ data "aws_ssm_parameter" "sqlite_username" {
   depends_on = [aws_ssm_parameter.sqlite_username]
 }
 
-resource "aws_ssm_parameter" "sqlite_passowrd" {
+resource "aws_ssm_parameter" "sqlite_password" {
   name  = "/${var.environment}/anchorplatform/SQLITE_PASSWORD"
   type  = "SecureString"
   value = "${var.sqlite_password}"
