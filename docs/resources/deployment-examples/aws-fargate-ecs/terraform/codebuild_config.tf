@@ -18,9 +18,6 @@ resource "aws_iam_role" "codebuild_role" {
 EOF
 }
 
-
-logs:CreateLogStream on resource: arn:aws:logs:us-east-2:245943599471:log-group:anchorplatform-dev-codebuild:log-stream:codebuild/4f6ec8fe-f16a-4566-9aa1-36bb7f1d081b
-
 resource "aws_iam_role_policy" "codebuild_policy" {
   role = aws_iam_role.codebuild_role.name
 
