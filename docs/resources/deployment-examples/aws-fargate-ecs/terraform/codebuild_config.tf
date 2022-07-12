@@ -40,6 +40,18 @@ resource "aws_iam_role_policy" "codebuild_policy" {
             {
                 "Effect": "Allow",
                 "Resource": [
+                    "*"
+                ],
+                "Action": [
+                    #"ec2:DescribeSubnets"
+                    "ec2:DescribeSecurityGroups"
+                    #"ec2:DescribeVpcs"
+                    #"ec2:CreateNetworkInterfacePermission"
+                ]
+            },
+            {
+                "Effect": "Allow",
+                "Resource": [
                     "arn:aws:s3:::${var.environment}-anchorconfig"
                 ],
                 "Action": [
@@ -114,4 +126,7 @@ resource "aws_codebuild_project" "codebuild_config" {
   tags = {
     Environment = "${var.environment}"
   }
+
+  depends_on = [aws_iam_policy.codebuild_policy]
+
 }
