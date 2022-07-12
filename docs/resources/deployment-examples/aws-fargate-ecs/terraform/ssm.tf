@@ -11,6 +11,7 @@ resource "aws_ssm_parameter" "jwt_secret" {
 
 data "aws_ssm_parameter" "jwt_secret" {
   name  = "/${var.environment}/anchorplatform/JWT_SECRET"
+  depends_on = [aws_ssm_parameter.jwt_secret]
 }
 
 resource "aws_ssm_parameter" "sep10_signing_seed" {
@@ -25,6 +26,7 @@ resource "aws_ssm_parameter" "sep10_signing_seed" {
 
 data "aws_ssm_parameter" "sep10_signing_seed" {
   name  = "/${var.environment}/anchorplatform/SEP10_SIGNING_SEED"
+  depends_on = [aws_ssm_parameter.sep10_signing_seed]
 }
 
 resource "aws_ssm_parameter" "sqlite_username" {
@@ -39,6 +41,7 @@ resource "aws_ssm_parameter" "sqlite_username" {
 
 data "aws_ssm_parameter" "sqlite_username" {
   name  = "/${var.environment}/anchorplatform/SQLITE_USERNAME" 
+  depends_on = [aws_ssm_parameter.sqlite_username]
 }
 
 resource "aws_ssm_parameter" "sqlite_passowrd" {
@@ -53,6 +56,7 @@ resource "aws_ssm_parameter" "sqlite_passowrd" {
 
 data "aws_ssm_parameter" "sqlite_password" {
   name  = "/${var.environment}/anchorplatform/SQLITE_PASSWORD" 
+  depends_on = [aws_ssm_parameter.sqlite_password]
 }
 
 
@@ -68,6 +72,8 @@ resource "aws_ssm_parameter" "sqs_access_key" {
 
 data "aws_ssm_parameter" "sqs_access_key" {
   name = "/${var.environment}/anchorplatform/SQS_ACCESS_KEY"
+  depends_on = [aws_ssm_parameter.sqs_access_key]
+
 }
 
 resource "aws_ssm_parameter" "sqs_secret_key" {
@@ -82,6 +88,8 @@ resource "aws_ssm_parameter" "sqs_secret_key" {
 
 data "aws_ssm_parameter" "sqs_secret_key" {
   name  = "/${var.environment}/anchorplatform/SQS_SECRET_KEY" 
+  depends_on = [aws_ssm_parameter.sqs_secret_key]
+
 }
 
 
