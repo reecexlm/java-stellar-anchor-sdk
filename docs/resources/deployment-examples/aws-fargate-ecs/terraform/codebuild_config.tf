@@ -127,6 +127,6 @@ resource "aws_codebuild_project" "codebuild_config" {
     Environment = "${var.environment}"
   }
 
-  depends_on = [aws_iam_policy.codebuild_policy]
+  depends_on = [aws_iam_role.codebuild_role]
 
 }
