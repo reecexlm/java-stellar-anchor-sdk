@@ -7,5 +7,29 @@ variable "environment" {
 variable "hosted_zone_name" {
   description = "name of hosted zone for anchor platform"
   type = string
-  #default = "stellaranchordemo.com"
+}
+
+variable "jwt_secret" {
+  type  = string
+  default = "secret"
+}
+variable "sep10_signing_seed" {
+    type  = string
+}
+
+variable "sqlite_username" {
+    type  = string
+    default = "admin"
+}
+variable "sqlite_password" {
+    type  = string
+    default = "admin"
+}
+
+variable  "sqs_access_key" {
+  type = string
+}
+
+variable  "sqs_secret_key" {
+  type = string
 }

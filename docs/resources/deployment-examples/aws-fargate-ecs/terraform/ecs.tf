@@ -6,25 +6,6 @@ resource "aws_ecs_cluster" "ref" {
   name = "ref-${var.environment}-cluster"
 }
 
-data "aws_ssm_parameter" "sqs_access_key" {
-  name = "SQS_ACCESS_KEY"
-}
-data "aws_ssm_parameter" "sqs_secret_key" {
-  name = "SQS_SECRET_KEY"
-}
-
-data "aws_ssm_parameter" "sqlite" {
-  name = "SQLITE"
-}
-
-data "aws_ssm_parameter" "sep10_signing_seed" {
-  name = "SEP10_SIGNING_SEED"
-}
-
-data "aws_ssm_parameter" "jwt_secret" {
-  name = "JWT_SECRET"
-}
-
 ## Task Definitions
 
 

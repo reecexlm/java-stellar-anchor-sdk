@@ -72,7 +72,7 @@ resource "aws_ecs_task_definition" "ref" {
 }
 
 resource "aws_iam_role" "ecs_task_role" {
-  name = "anchorplatform-ecsTaskRole"
+  name = "${var.environment}-anchorplatform-ecsTaskRole"
  
   assume_role_policy = <<EOF
 {
@@ -92,7 +92,7 @@ EOF
 }
 
 resource "aws_iam_role" "ecs_task_execution_role" {
-  name = "anchorplatform-ecsTaskExecutionRole"
+  name = "${var.environment}-anchorplatform-ecsTaskExecutionRole"
  
   assume_role_policy = <<EOF
 {
@@ -180,7 +180,7 @@ resource "aws_ecs_service" "ref" {
 
 ####################### ALB 
 resource "aws_lb" "sep" {
-  name               = "sep-${var.environment}-alb"
+  name               = "${var.environment}-sep-alb"
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.sep_alb.id]
@@ -189,7 +189,7 @@ resource "aws_lb" "sep" {
   enable_deletion_protection = false
 }
 resource "aws_lb" "ref" {
-  name               = "ref-${var.environment}-alb"
+  name               = "${var.environment}-ref-alb"
   internal           = true
   load_balancer_type = "application"
   security_groups    = [aws_security_group.ref_alb.id]
@@ -288,7 +288,7 @@ resource "aws_alb_listener" "ref_http" {
  
 
 resource "aws_iam_policy" "create_log_group" {
-  name        = "createloggroups"
+  name        = "${var.environment}-createloggroups"
   description = "Create Log Group"
  
   policy = <<EOF

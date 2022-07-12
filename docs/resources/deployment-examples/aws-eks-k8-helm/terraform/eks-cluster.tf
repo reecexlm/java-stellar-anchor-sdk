@@ -1,6 +1,6 @@
 resource "aws_iam_role" "eks_cluster" {
   # The name of the role
-  name = "eks-cluster"
+  name = "${var.environment}-eks-cluster"
 
   # The policy that grants an entity permission to assume the role.
   # Used to access AWS resources that you might not normally have access to.
@@ -22,7 +22,7 @@ POLICY
 }
 
 resource "aws_iam_policy" "elb_controller_policy" {
-  name        = "aws_load_balancer_controller"
+  name        = "${var.environment}-aws_load_balancer_controller"
   description = "aws-load-balancer-controller"
   policy = jsonencode(
     {

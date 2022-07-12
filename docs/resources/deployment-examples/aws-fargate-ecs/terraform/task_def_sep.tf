@@ -53,11 +53,11 @@ resource "aws_ecs_task_definition" "sep" {
       },
       {
         "name": "SQLITE_USERNAME",
-        "valueFrom": data.aws_ssm_parameter.sqlite.arn
+        "valueFrom": data.aws_ssm_parameter.sqlite_username.arn
       },
       {
         "name": "SQLITE_PASSWORD",
-        "valueFrom": data.aws_ssm_parameter.sqlite.arn
+        "valueFrom": data.aws_ssm_parameter.sqlite_password.arn
       },
       {
         "name": "SEP_10_SIGNING_SEED",
