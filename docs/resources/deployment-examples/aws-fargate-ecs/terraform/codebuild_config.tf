@@ -19,7 +19,7 @@ EOF
 }
 
 resource "aws_iam_role_policy" "codebuild_policy" {
-  role = aws_iam_role.example.name
+  role = aws_iam_role.codebuild_role.name
 
   policy = jsonencode(
     {
