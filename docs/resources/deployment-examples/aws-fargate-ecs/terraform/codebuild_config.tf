@@ -160,9 +160,14 @@ resource "aws_codebuild_project" "codebuild_config" {
         value = var.aws_account
       }
 
+       environment_variable {
+        name  = "AWS_REGION"
+        value = var.aws_region
+      }
+
     }
 
-  }
+
 
   logs_config {
     cloudwatch_logs {
