@@ -1,9 +1,9 @@
 
 locals {
-  priv_subnets = formatlist(
-                      "arn:aws:ec2:us-east-2:245943599471:subnet/%s",
-                       module.vpc.private_subnets
-  )
+  subnet_arns = formatlist(
+                    "arn:aws:ec2:us-east-2:245943599471:subnet/%s",
+                    module.vpc.private_subnets
+                )
 }
 resource "aws_iam_role" "codebuild_role" {
   name = "${var.environment}-anchorplatform-codebuild"
@@ -65,7 +65,7 @@ resource "aws_iam_role_policy" "codebuild_policy" {
                 ],
                 "Condition": {
                   "StringEquals": {
-                    "ec2:Subnet": [local.priv_subnets],
+                    "ec2:Subnet": local.subnet_arns,
                     "ec2:AuthorizedService": "codebuild.amazonaws.com"
                   }
                 }
