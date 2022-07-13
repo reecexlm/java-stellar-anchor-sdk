@@ -28,8 +28,7 @@ resource "aws_iam_role_policy" "codebuild_policy" {
             {
                 "Effect": "Allow",
                 "Resource": [
-                    "arn:aws:logs:us-east-2:245943599471:log-group:/aws/codebuild/anchorplatform-${var.environment}-codebuild",
-                    "arn:aws:logs:us-east-2:245943599471:log-group:/aws/codebuild/anchorplatform-${var.environment}-codebuild:*"
+                    "arn:aws:logs:*",
                 ],
                 "Action": [
                     "logs:CreateLogGroup",
