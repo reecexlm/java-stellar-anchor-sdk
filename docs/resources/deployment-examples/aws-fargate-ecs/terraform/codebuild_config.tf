@@ -143,7 +143,7 @@ resource "aws_codebuild_project" "codebuild_config" {
 
       environment_variable {
         name  = "ANCHOR_CONFIG_ENVIRONMENT"
-        value = "${var.environement}"
+        value = "${var.environment}"
       }
 
       environment_variable {
