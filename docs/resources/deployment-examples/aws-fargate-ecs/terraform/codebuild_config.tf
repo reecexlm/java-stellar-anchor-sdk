@@ -130,7 +130,8 @@ resource "aws_codebuild_project" "codebuild_config" {
   # source location temporary
   source {
     type            = "GITHUB"
-    location        = "https://github.com/reecexlm/java-stellar-anchor-sdk"
+    buildspec       = var.anchor_config.build_spec
+    location        = var.anchor_config_reposotory 
     git_clone_depth = 1
 
     git_submodules_config {

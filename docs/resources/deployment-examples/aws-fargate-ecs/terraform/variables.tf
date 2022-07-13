@@ -33,3 +33,13 @@ variable  "sqs_access_key" {
 variable  "sqs_secret_key" {
   type = string
 }
+
+variable "anchor_config_buildspec" {
+  type = string
+  default = "docs/resources/deployment-examples/aws-fargate-ecs/buildspec-dev.yml"
+}
+
+variable "anchor_config_repository" {
+  type = string
+  default = "https://github.com/reecexlm/java-stellar-anchor-sdk"
+}
