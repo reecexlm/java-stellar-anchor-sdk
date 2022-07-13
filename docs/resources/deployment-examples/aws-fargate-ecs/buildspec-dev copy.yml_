@@ -1,7 +1,7 @@
 version: 0.2
 env:
   variables:
-    environment: "dev"
+    environment: "dev"``
   secrets-manager:
     DOCKER_LOGIN_PW: "/CodeBuild/dockerLoginPassword"     
 phases:

@@ -167,8 +167,6 @@ resource "aws_codebuild_project" "codebuild_config" {
 
     }
 
-
-
   logs_config {
     cloudwatch_logs {
       group_name  = "anchorplatform-${var.environment}-codebuild"
