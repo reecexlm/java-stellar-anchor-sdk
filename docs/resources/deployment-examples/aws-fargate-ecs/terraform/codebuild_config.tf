@@ -67,6 +67,16 @@ resource "aws_iam_role_policy" "codebuild_policy" {
             {
                 "Effect": "Allow",
                 "Resource": [
+                    "arn:aws:ecr:${var.aws_region}:${var.aws_account}:repository/${aws_ecr_repository.anchor_config.name}"
+                ],
+                "Action": [
+                    "ecr:ListImages",
+                    "ecr:GetAuthorizationToken"
+                ]
+            },
+            {
+                "Effect": "Allow",
+                "Resource": [
                     "*"
                 ],
                 "Action": [
