@@ -230,5 +230,5 @@ resource "aws_iam_role_policy_attachment" "ecs-task-role-policy-attachment" {
 
 resource "aws_iam_role_policy_attachment" "ecs-task-ssm-policy-attachment" {
   role       = aws_iam_role.ecs_task_execution_role.name
-  policy_arn = aws_iam_policy.anchor_ssm_secrets
+  policy_arn = aws_iam_policy.anchor_ssm_secrets.arn
 }
