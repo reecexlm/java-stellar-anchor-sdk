@@ -37,21 +37,35 @@ resource "aws_iam_role_policy" "codebuild_policy" {
                 ]
             },
             {
-              "Effect": "Allow",
-              "Action": [
-                "ec2:CreateNetworkInterfacePermission"
-              ],
-              "Resource": [
-                "arn:aws:ec2:us-east-1:123456789012:network-interface/*"
-              ],
-              "Condition": {
-                "StringEquals": {
-                  "ec2:Subnet": [module.vpc.private_subnets
-                  ],
-                  "ec2:AuthorizedService": "codebuild.amazonaws.com"
-                }
-              }
+                "Effect": "Allow",
+                "Resource": [
+                    "*"
+                ],
+                "Action": [
+                    "ec2:DescribeSubnets",
+                    "ec2:DescribeSecurityGroups",
+                    "ec2:DescribeVpcs",
+                    "ec2:DescribeNetworkInterfaces",
+                    "ec2:DeleteNetworkInterface"
+                ]
             },
+            {
+                "Effect": "Allow",
+                "Action": [
+                  "ec2:CreateNetworkInterfacePermission"
+                ],
+                "Resource": [
+                  "arn:aws:ec2:us-east-1:123456789012:network-interface/*"
+                ],
+                "Condition": {
+                  "StringEquals": {
+                    "ec2:Subnet": [
+                      module.vpc.private_subnets
+                    ],
+                    "ec2:AuthorizedService": "codebuild.amazonaws.com"
+                  }
+                }
+              },
             {
                 "Effect": "Allow",
                 "Resource": [
