@@ -25,5 +25,5 @@ phases:
       #- docker login -u AWS -p $(aws ecr get-login-password --region $AWS_REGION) $AWS_ACCOUNT.dkr.ecr.$AWS_REGION.amazonaws.com 
       - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT.dkr.ecr.$AWS_REGION.amazonaws.com
       - docker build . -t anchor-config
-      - docker tag anchor-config $ANCHOR_CONFIG_S3_BUCKET:latest
+      - docker tag anchor-config $AWS_ACCOUNT.dkr.ecr.$AWS_REGION.amazonaws.com/$ANCHOR_CONFIG_ECR_REPO:latest 
       - docker push $AWS_ACCOUNT.dkr.ecr.$AWS_REGION.amazonaws.com/$ANCHOR_CONFIG_ECR_REPO:latest 
