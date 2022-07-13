@@ -12,7 +12,7 @@ resource "aws_ecs_task_definition" "sep" {
   
   container_definitions = jsonencode([{
    name        = "${var.environment}-sep-config"
-   image       = "${aws_account}.dkr.ecr.${aws_region}.amazonaws.com/${aws_ecr_repository.anchor_config.name}:latest"
+   image       = "${var.aws_account}.dkr.ecr.${var.aws_region}.amazonaws.com/${aws_ecr_repository.anchor_config.name}:latest"
    entryPoint  = ["/copy_config.sh"]
    
    essential   = false
