@@ -15,9 +15,9 @@ phases:
       - echo $AWS_REGION
       - echo $ANCHOR_CONFIG_S3_BUCKET
       - echo $ANCHOR_CONFIG_ECR_REPO
-      - aws s3 cp $ANCHOR_CONFIG_S3_BUCKET/anchor_config.yaml .
-      - aws s3 cp $ANCHOR_CONFIG_S3_BUCKET/stellar.toml ./stellar_wks.toml
-      - aws s3 cp $ANCHOR_CONFIG_S3_BUCKET/reference_config.yaml .
+      - aws s3 cp s3://$ANCHOR_CONFIG_S3_BUCKET/anchor_config.yaml .
+      - aws s3 cp s3://$ANCHOR_CONFIG_S3_BUCKET/stellar.toml ./stellar_wks.toml
+      - aws s3 cp s3://$ANCHOR_CONFIG_S3_BUCKET/reference_config.yaml .
       - mkdir /config
       - aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin $ANCHOR_CONFIG_ECR_REPO
       - docker build . -t anchor-config
