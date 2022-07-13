@@ -13,6 +13,8 @@ phases:
     commands:
       - cd docs/resources/deployment-examples/aws-fargate-ecs
       - echo $AWS_REGION
+      - echo $ANCHOR_CONFIG_S3_BUCKET
+      - echo $ANCHOR_CONFIG_ECR_REPO
       - aws s3 cp $ANCHOR_CONFIG_S3_BUCKET/anchor_config.yaml .
       - aws s3 cp $ANCHOR_CONFIG_S3_BUCKET/stellar.toml ./stellar_wks.toml
       - aws s3 cp $ANCHOR_CONFIG_S3_BUCKET/reference_config.yaml .
