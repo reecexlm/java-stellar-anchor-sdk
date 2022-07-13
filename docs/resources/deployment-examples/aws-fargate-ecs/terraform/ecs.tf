@@ -10,7 +10,7 @@ resource "aws_ecs_cluster" "ref" {
 
 
 resource "aws_iam_policy" "anchor_ssm_secrets" {
-  name        = "anchor_ssm_secrets_policy"
+  name        = "${var.environment}-anchor_ssm_secrets_policy"
   path        = "/"
   description = "RO access to ssm"
 
@@ -35,7 +35,7 @@ resource "aws_iam_policy" "anchor_ssm_secrets" {
 }
 
 resource "aws_iam_role" "ecs_task_execution_role" {
-  name = "anchorplatform-ecsTaskExecutionRole"
+  name = "${var.environment}-anchorplatform-ecsTaskExecutionRole"
  
   assume_role_policy = <<EOF
 {
@@ -226,4 +226,9 @@ EOF
 resource "aws_iam_role_policy_attachment" "ecs-task-role-policy-attachment" {
   role       = aws_iam_role.ecs_task_execution_role.name
   policy_arn = aws_iam_policy.create_log_group.arn
+}
+
+resource "aws_iam_role_policy_attachment" "ecs-task-ssm-policy-attachment" {
+  role       = aws_iam_role.ecs_task_execution_role.name
+  policy_arn = aws_iam_policy.anchor_ssm_secrets
 }
