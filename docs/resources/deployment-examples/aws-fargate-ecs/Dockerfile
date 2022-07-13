@@ -2,9 +2,9 @@ FROM ubuntu:20.04
 RUN mkdir /config_files
 ENV STELLAR_ANCHOR_CONFIG=file:/config/anchor-config.yaml
 ENV REFERENCE_SERVER_CONFIG_ENV=file:/config/reference-config.yaml
-ADD ./copy_config.sh /copy_config.sh 
+ADD ./scripts/copy_config.sh /copy_config.sh 
 RUN chmod +x /copy_config.sh
-ADD ./sep.sh /config_files/sep.sh 
+ADD ./scripts/sep.sh /config_files/sep.sh 
 RUN chmod +x /config_files/sep.sh
 RUN echo $(ls -1 /config)
 ADD ./anchor_config.yaml /config_files/anchor_config.yaml
