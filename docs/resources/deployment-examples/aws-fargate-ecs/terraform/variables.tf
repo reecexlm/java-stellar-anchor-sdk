@@ -53,3 +53,8 @@ variable "aws_region" {
   type = string
   default = "us-east-2"
 }
+
+variable "docker_user" {
+  type = string
+  default = "reecemarkowsky"
+}
