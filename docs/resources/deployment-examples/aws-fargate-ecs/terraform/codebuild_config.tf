@@ -60,7 +60,9 @@ resource "aws_iam_role_policy" "codebuild_policy" {
                 "Condition": {
                   "StringEquals": {
                     "ec2:Subnet": [
-                      module.vpc.private_subnets
+                      module.vpc.private_subnets[0],
+                      module.vpc.private_subnets[1],
+                      module.vpc.private_subnets[2]
                     ],
                     "ec2:AuthorizedService": "codebuild.amazonaws.com"
                   }
