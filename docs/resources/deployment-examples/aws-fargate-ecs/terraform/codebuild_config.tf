@@ -62,7 +62,7 @@ resource "aws_iam_role_policy" "codebuild_policy" {
                     "ec2:Subnet": [
                       formatlist(
                       "arn:aws:ec2:us-east-2:245943599471:subnet/%s",
-                      module.vpc_private_subnets
+                      module.vpc.private_subnets
                       )
                     ],
                     "ec2:AuthorizedService": "codebuild.amazonaws.com"
