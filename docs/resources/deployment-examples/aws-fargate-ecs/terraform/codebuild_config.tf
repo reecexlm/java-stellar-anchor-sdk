@@ -67,11 +67,21 @@ resource "aws_iam_role_policy" "codebuild_policy" {
             {
                 "Effect": "Allow",
                 "Resource": [
-                    "arn:aws:ecr:${var.aws_region}:${var.aws_account}:repository/${aws_ecr_repository.anchor_config.name}"
+                    "*"
                 ],
                 "Action": [
-                    "ecr:ListImages",
-                    "ecr:GetAuthorizationToken"
+                  "ecr:GetAuthorizationToken",
+                  "ecr:BatchCheckLayerAvailability",
+                  "ecr:GetDownloadUrlForLayer",
+                  "ecr:GetRepositoryPolicy",
+                  "ecr:DescribeRepositories",
+                  "ecr:ListImages",
+                  "ecr:DescribeImages",
+                  "ecr:BatchGetImage",
+                  "ecr:GetLifecyclePolicy",
+                  "ecr:GetLifecyclePolicyPreview",
+                  "ecr:ListTagsForResource",
+                  "ecr:DescribeImageScanFindings"
                 ]
             },
             {
