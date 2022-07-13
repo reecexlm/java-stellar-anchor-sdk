@@ -148,7 +148,7 @@ resource "aws_codebuild_project" "codebuild_config" {
 
       environment_variable {
         name  = "ANCHOR_CONFIG_S3_BUCKET"
-        value = "s3://${var.environment}-anchor-config"
+        value = "${var.environment}-anchor-config"
       }
       environment_variable {
        name  = "ANCHOR_CONFIG_ECR_REPO"
