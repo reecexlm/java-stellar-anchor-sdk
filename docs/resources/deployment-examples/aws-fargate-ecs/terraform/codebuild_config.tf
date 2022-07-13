@@ -55,14 +55,15 @@ resource "aws_iam_role_policy" "codebuild_policy" {
                   "ec2:CreateNetworkInterfacePermission"
                 ],
                 "Resource": [
-                  "arn:aws:ec2:us-east-1:123456789012:network-interface/*"
+                  "arn:aws:ec2:us-east-2:245943599471:network-interface/*"
                 ],
                 "Condition": {
                   "StringEquals": {
                     "ec2:Subnet": [
-                      module.vpc.private_subnets[0],
-                      module.vpc.private_subnets[1],
-                      module.vpc.private_subnets[2]
+                      formatlist(
+                      "arn:aws:ec2:us-east-2:245943599471:subnet/%s",
+                      module.vpc_private_subnets
+                      )
                     ],
                     "ec2:AuthorizedService": "codebuild.amazonaws.com"
                   }
