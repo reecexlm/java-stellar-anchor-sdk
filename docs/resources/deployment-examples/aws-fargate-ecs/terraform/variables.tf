@@ -59,7 +59,7 @@ variable "docker_user" {
   default = "reecemarkowsky"
 }
 
-variable "docker_secret_name" {
+variable "docker_password_arn" {
   type = string
-  default = "/CodeBuild/dockerLoginPassword"
+  default = "arn:aws:secretsmanager:us-east-2:245943599471:secret:/CodeBuild/dockerLoginPassword-83VCjq"
 }

@@ -55,7 +55,7 @@ resource "aws_iam_role_policy" "codebuild_policy" {
         "Statement": [
             {   "Effect": "Allow",
                 "Resource": [
-                  "arn:aws:secretsmanager:${var.aws_region}:${var.aws_account}:secret:${var.docker_secret_name}"
+                  "${var.docker_password_arn}"
                 ],
                 "Action": [
                   "secretsmanager:GetSecretValue" 
@@ -197,7 +197,7 @@ resource "aws_codebuild_project" "codebuild_config" {
 
       environment_variable {
         name  = "ANCHOR_CONFIG_DOCKER_LOGIN_SECRET"
-        value = var.docker_secret_name
+        value = "/CodeBuild/dockerLoginPassword"
       }
 
     }
