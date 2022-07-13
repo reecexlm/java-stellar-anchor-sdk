@@ -20,7 +20,7 @@ phases:
       - aws s3 cp s3://$ANCHOR_CONFIG_S3_BUCKET/stellar.toml ./stellar_wks.toml
       - aws s3 cp s3://$ANCHOR_CONFIG_S3_BUCKET/reference_config.yaml .
       - mkdir /config
-      - aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin "${var.aws_account}.dkr.ecr.${var.aws_region}.amazonaws.com"
+      - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT.dkr.ecr.$AWS_REGION.amazonaws.com
       - docker build . -t anchor-config
       - docker tag anchor-config $ANCHOR_CONFIG_S3_BUCKET:latest
-      - docker push "$AWS_ACCOUNT.dkr.ecr.$AWS_REGION.amazonaws.com/$ANCHOR_CONFIG_ECR_REPO:latest" 
+      - docker push $AWS_ACCOUNT.dkr.ecr.$AWS_REGION.amazonaws.com/$ANCHOR_CONFIG_ECR_REPO:latest 
