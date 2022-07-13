@@ -98,7 +98,7 @@ resource "aws_iam_role_policy" "codebuild_policy" {
             {
                 "Effect": "Allow",
                 "Resource": [
-                    "arn:aws:s3:::${var.environment}-anchorconfig"
+                    "arn:aws:s3:::${var.environment}-${aws_s3_bucket.anchor_config.name}"
                 ],
                 "Action": [
                     "s3:GetObject",
