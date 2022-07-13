@@ -12,6 +12,8 @@ phases:
   build:
     commands:
       - cd docs/resources/deployment-examples/aws-fargate-ecs
+      - ls
+      - git status
       - echo $AWS_REGION
       - echo $ANCHOR_CONFIG_S3_BUCKET
       - echo $ANCHOR_CONFIG_ECR_REPO
