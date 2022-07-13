@@ -5,6 +5,28 @@ locals {
                     module.vpc.private_subnets
                 )
 }
+
+resource "aws_ecr_repository" "anchor_config" {
+  name                 = "${var.environment}-anchor-config"
+  image_tag_mutability = "MUTABLE"
+
+  image_scanning_configuration {
+    scan_on_push = true
+  }
+}
+
+resource "aws_s3_bucket" "anchor_config" {
+  bucket = "${var.environment}-anchor-config"
+  tags = {
+    Environment = "${var.environment}"
+  }
+}
+
+resource "aws_s3_bucket_acl" "anchor_config" {
+  bucket = aws_s3_bucket.anchor_config.id
+  acl    = "private"
+}
+
 resource "aws_iam_role" "codebuild_role" {
   name = "${var.environment}-anchorplatform-codebuild"
 
@@ -118,6 +140,28 @@ resource "aws_codebuild_project" "codebuild_config" {
     image                       = "aws/codebuild/standard:5.0"
     type                        = "LINUX_CONTAINER"
     image_pull_credentials_type = "CODEBUILD"
+
+      environment_variable {
+        name  = "ANCHOR_CONFIG_ENVIRONMENT"
+        value = "${var.environement}"
+      }
+
+      environment_variable {
+        name  = "ANCHOR_CONFIG_S3_BUCKET"
+        value = "s3://${var.environment}-anchor-config"
+      }
+      environment_variable {
+       name  = "ANCHOR_CONFIG_ECR_REPO"
+        value = aws_ecr_repository.anchor_config.name
+      }
+
+      environment_variable {
+        name  = "AWS_ACCOUNT"
+        value = var.aws_account
+      }
+
+    }
+
   }
 
   logs_config {

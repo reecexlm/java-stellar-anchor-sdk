@@ -43,3 +43,13 @@ variable "anchor_config_repository" {
   type = string
   default = "https://github.com/reecexlm/java-stellar-anchor-sdk"
 }
+
+variable "aws_account" {
+  type = string
+  default = "245943599471"
+}
+
+variable "aws_region" {
+  type = string
+  default = "us-east-2"
+}
