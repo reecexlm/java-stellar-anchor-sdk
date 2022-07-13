@@ -89,7 +89,14 @@ resource "aws_iam_role_policy" "codebuild_policy" {
                   "ecr:GetLifecyclePolicy",
                   "ecr:GetLifecyclePolicyPreview",
                   "ecr:ListTagsForResource",
-                  "ecr:DescribeImageScanFindings"
+                  "ecr:DescribeImageScanFindings",
+                  "ecr:BatchGetImage",
+                  "ecr:BatchCheckLayerAvailability",
+                  "ecr:CompleteLayerUpload",
+                  "ecr:GetDownloadUrlForLayer",
+                  "ecr:InitiateLayerUpload",
+                  "ecr:PutImage",
+                  "ecr:UploadLayerPart"
                 ]
             },
             {
