@@ -58,3 +58,8 @@ variable "docker_user" {
   type = string
   default = "reecemarkowsky"
 }
+
+variable "docker_password_secret_name" {
+  type = string
+  default = "/CodeBuild/dockerLoginPassword"
+}

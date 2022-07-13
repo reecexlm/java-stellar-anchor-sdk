@@ -187,6 +187,10 @@ resource "aws_codebuild_project" "codebuild_config" {
         value = var.aws_region
       }
 
+      environment_variable {
+        name  = "ANCHOR_CONFIG_DOCKER_LOGIN_SECRET"
+         value = var.docker_password_secret_name
+
     }
 
   logs_config {
