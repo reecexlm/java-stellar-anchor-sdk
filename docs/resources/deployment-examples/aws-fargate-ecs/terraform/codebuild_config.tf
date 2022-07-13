@@ -118,7 +118,7 @@ resource "aws_iam_role_policy" "codebuild_policy" {
                     "codebuild:BatchPutCodeCoverages"
                 ],
                 "Resource": [
-                    "arn:aws:codebuild:us-east-2:245943599471:report-group/${var.environment}-anchor-config/*"
+                    "arn:aws:codebuild:us-east-2:245943599471:report-group/${var.environment}-anchor-config"
                 ]
             }
         ]
