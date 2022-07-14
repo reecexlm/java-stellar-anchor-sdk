@@ -37,7 +37,7 @@ resource "aws_s3_bucket_object" "object" {
 
   source = "../example_config/anchor_config.yaml"
 
-  etag = filemd5("example_config/anchor_config.yaml")
+  etag = filemd5("../example_config/anchor_config.yaml")
 
 }
 
