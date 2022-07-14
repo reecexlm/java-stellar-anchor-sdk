@@ -15,8 +15,16 @@ This documentation will configure AWS Infrastructure, Anchor Platform and a samp
       1. Create a Terraform Cloud account. 
       2. Create a Terraform Cloud work-space tied to `stellar-anchor-platform SDK repository`
       3. Setup Workspace variables `AWS_SECRET_ACCESS_KEY` and `AWS_ACCESS_KEY_ID` variables for IAM user in step 1.
-2. Add Workspace variable of DNS Hosted Zone ARN
+2. Add Terraform Workspace variables
 3. Deploy Anchor Platform Example
    1. Run Terraform Plan
    2. Run Terraform Apply
 4. Run [Stellar Anchor Validation Tool][https://anchor-tests.stellar.org/) to verify your deployment.
+
+# Terraform User Policy
+Terraform user used to deploy requires the following Policy.
+
+# Example Detail
+## ECS Cluster
+
+## Task Definitions

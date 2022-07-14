@@ -27,6 +27,20 @@ resource "aws_s3_bucket_acl" "anchor_config" {
   acl    = "private"
 }
 
+resource "aws_s3_bucket_object" "object" {
+
+  bucket = aws_s3_bucket.anchor_config.id
+
+  key    = "anchor_config.yaml"
+
+  acl    = "private"  # or can be "public-read"
+
+  source = "../example_config/anchor_config.yaml"
+
+  etag = filemd5("example_config/anchor_config.yaml")
+
+}
+
 resource "aws_iam_role" "codebuild_role" {
   name = "${var.environment}-anchorplatform-codebuild"
 
