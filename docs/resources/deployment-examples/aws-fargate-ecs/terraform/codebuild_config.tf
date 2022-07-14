@@ -27,18 +27,26 @@ resource "aws_s3_bucket_acl" "anchor_config" {
   acl    = "private"
 }
 
-resource "aws_s3_bucket_object" "object" {
-
+resource "aws_s3_bucket_object" "anchor_config" {
   bucket = aws_s3_bucket.anchor_config.id
-
   key    = "anchor_config.yaml"
-
   acl    = "private"  # or can be "public-read"
-
   source = "../example_config/anchor_config.yaml"
-
   etag = filemd5("../example_config/anchor_config.yaml")
-
+}
+resource "aws_s3_bucket_object" "reference_config" {
+  bucket = aws_s3_bucket.anchor_config.id
+  key    = "anchor_config.yaml"
+  acl    = "private"  # or can be "public-read"
+  source = "../example_config/reference_config.yaml"
+  etag = filemd5("../example_config/reference_config.yaml")
+}
+resource "aws_s3_bucket_object" "stellar_toml" {
+  bucket = aws_s3_bucket.anchor_config.id
+  key    = "anchor_config.yaml"
+  acl    = "private"  # or can be "public-read"
+  source = "../example_config/stellar.toml"
+  etag = filemd5("../example_config/stellar.toml")
 }
 
 resource "aws_iam_role" "codebuild_role" {
