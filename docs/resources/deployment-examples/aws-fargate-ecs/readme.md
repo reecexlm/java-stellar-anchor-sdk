@@ -22,7 +22,20 @@ This documentation will configure AWS Infrastructure, Anchor Platform and a samp
 4. Run [Stellar Anchor Validation Tool][https://anchor-tests.stellar.org/) to verify your deployment.
 
 # Terraform User Policy
-Terraform user used to deploy requires the following Policy.
+Terraform user used to deploy requires the following policy:
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+       {
+            "Effect": "Allow",
+            "Action": [
+
+            ],
+            "Resource": "*"
+        }
+```
+
 
 # Example Detail
 ## ECS Cluster
