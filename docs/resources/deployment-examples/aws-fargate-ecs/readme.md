@@ -26,6 +26,8 @@ This documentation will configure AWS Infrastructure, Anchor Platform and a samp
    2. Run Terraform Apply
 4. Run [Stellar Anchor Validation Tool][https://anchor-tests.stellar.org/) to verify your deployment.
 
+<img width="1424" alt="image" src="https://user-images.githubusercontent.com/98427531/179148353-cb60db74-a826-480b-aec2-0562dbfd4610.png">
+
 # Terraform User Policy
 Terraform user used to deploy requires the following policy:
 ```
@@ -56,12 +58,28 @@ Anchor Platform Config allows you to specify placeholders for variables that con
 # ECS Clusters
 There are two ECS Clusters in this example.  The `SEP Service` runs in one cluster to support the front end `SEP-31 protocol` service.  The `Reference Service` cluster hosts an example receiving anchor backend service.   Both services include a load-balancer which calles `/health` endpoints to determine listener target health. Both clusters are deployed in a `private subnet`. The `SEP Service` loadbalancer is deployed in a public subnet to enable public internet access. As a back-end service, the `Reference Service` loadbalancer is deployed in `private` subnet.
 
+<img width="971" alt="image" src="https://user-images.githubusercontent.com/98427531/179147580-b9da19ab-ea05-4a08-ad9a-868be8d3442b.png">
+
+There are two ECS Clusters in this example.  The `SEP Service` runs in one cluster to support the front end `SEP-31 protocol` service.  The `Reference Service` cluster hosts an example receiving anchor backend service.   Both services include a load-balancer which calles `/health` endpoints to determine listener target health. Both clusters are deployed in a `private subnet`. The `SEP Service` loadbalancer is deployed in a public subnet to enable public internet access. As a back-end service, the `Reference Service` loadbalancer is deployed in `private` subnet.
+
 # Task Definitions
-There are two task definitions for the `fargate deployment example`. The `SEP` task definition defines the SEP Service task that will be deployed to the `SEP Service` in the `SEP Cluster`. The `Reference` task definition defines the reference example service deployed in the `Reference Service` cluster.  Both task definitions use the same `Stellar/Anchor-Platform` docker image.   Both task definitions will utilize a configuration sidecar container for deploying configuration.  The sidecar container is built using an AWS Codebuild project specifically for demonstration purposes only.  How you generate you configuration files for your environment is not in scope for this example.  
+There are two task definitions for the `fargate deployment example`. The `SEP` task definition defines the SEP Service task that will be deployed to the `SEP Service` in the `SEP Cluster`. The `Reference` task definition defines the reference example service deployed in the `Reference Service` cluster.  Both the `Sep` and `Reference` task definitions have a container list with the `Stellar/Anchor-Platform` and a configuration sidecar container for deploying configuration.  
+
+<img width="1262" alt="image" src="https://user-images.githubusercontent.com/98427531/179147981-d2fa69ef-ee81-4954-8e71-6ef550106bc8.png">
+
+The sidecar container is built using an AWS Codebuild project specifically for demonstration purposes only.  How you generate you configuration files for your environment is not in scope for this example.  
 
 # Configuration Sidecar
 The SEP and Reference Server Task Definitions both include a side-car container to deploy configuration separately of the application services.  Both containers share a`/config` volume on the same container instance.  The `anchor-config container`, built by code-build project, contains the configuration files. When deployed, it mounts the /config volume with r/w access and writes the configuration files to it.  It then exits.   The `SEP service` now can be deployed (dependency on anchor-config container) and once deployed will have access to `/config/anchor-config.yaml` to startup.  
 
 # Anchor Config Codebuild Project
-This example includes a [code-build](./terraform/codebuild_config.tf) project which builds a container that contains the configuration files for SEP and Reference server instances.  The example [build spec](buildspec-dev.yml) performs a `docker build` ([Dockerfile](Dockerfile) that copies example config files from S3 to the docker container. The s3 bucket and sample config files are provisioned to S3 using [terraform](./terraform/codebuild_config.tf).   You will need to modify these configuration files parameter values for them to work in your environment.  The container is pushed to an `anchor-config` `ecr repository`.  The SEP and Reference task definitions will deploy the `config-container` as a side-car and deploy the configuration via a `entrypoint` script that copies the configuration from the docker container to the shared `/config` volume on the container instance.
+This example includes a [code-build](./terraform/codebuild_config.tf) project which builds a container that contains the configuration files for SEP and Reference server instances.  
+
+<img width="1666" alt="image" src="https://user-images.githubusercontent.com/98427531/179148075-f341395e-8d2a-4cf8-85a8-c40ab5086cad.png">
+
+The example [build spec](buildspec-dev.yml) performs a `docker build` ([Dockerfile](Dockerfile) that copies example config files from S3 to the docker container. The s3 bucket and sample config files are provisioned to S3 using [terraform](./terraform/codebuild_config.tf).   You will need to modify these configuration files parameter values for them to work in your environment.  The container is pushed to an `anchor-config` `ecr repository`.  
+
+<img width="1424" alt="image" src="https://user-images.githubusercontent.com/98427531/179148157-d9f7c29e-1061-41ba-a7e2-46bf0136c652.png">
+
+The SEP and Reference task definitions will deploy the `config-container` as a side-car and deploy the configuration via a `entrypoint` script that copies the configuration from the docker container to the shared `/config` volume on the container instance.
 
