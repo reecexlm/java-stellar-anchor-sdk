@@ -18,7 +18,7 @@ integration-auth:
   #     NONE
   #     API_KEY
   #     JWT_TOKEN
-  authType: API_KEY
+  authType: NONE
   # CallbackAPI requests (`Platform->Anchor`) will contain an authentication header whose token was built using this
   # secret. The Anchor Backend will also store this same secret and use it to decode the incoming token to verify it
   # came from the Platform.
