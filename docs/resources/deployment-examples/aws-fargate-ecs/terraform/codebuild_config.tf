@@ -75,14 +75,6 @@ resource "aws_iam_role_policy" "codebuild_policy" {
     {
         "Version": "2012-10-17",
         "Statement": [
-            {   "Effect": "Allow",
-                "Resource": [
-                  "${var.docker_password_arn}"
-                ],
-                "Action": [
-                  "secretsmanager:GetSecretValue" 
-                ]  
-            },
             {
                 "Effect": "Allow",
                 "Resource": [
