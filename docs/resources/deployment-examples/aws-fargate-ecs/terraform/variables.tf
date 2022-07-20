@@ -46,20 +46,10 @@ variable "anchor_config_repository" {
 
 variable "aws_account" {
   type = string
-  default = "245943599471"
+  default = "${var.aws_account}"
 }
 
 variable "aws_region" {
   type = string
-  default = "us-east-2"
-}
-
-variable "docker_user" {
-  type = string
-  default = "reecemarkowsky"
-}
-
-variable "docker_password_arn" {
-  type = string
-  default = "arn:aws:secretsmanager:us-east-2:245943599471:secret:/CodeBuild/dockerLoginPassword-83VCjq"
+  default = "${var.aws_region}"
 }

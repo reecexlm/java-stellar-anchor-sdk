@@ -24,7 +24,7 @@ resource "aws_ecs_task_definition" "sep" {
                 "logDriver": "awslogs",
                 "options": {
                     "awslogs-group": "anchor-platform",
-                    "awslogs-region": "us-east-2",
+                    "awslogs-region": "${var.aws_region}",
                     "awslogs-create-group": "true",
                     "awslogs-stream-prefix": "sep"
                 }
@@ -53,7 +53,7 @@ resource "aws_ecs_task_definition" "ref" {
                 "logDriver": "awslogs",
                 "options": {
                     "awslogs-group": "anchor-platform",
-                    "awslogs-region": "us-east-2",
+                    "awslogs-region": "${var.aws_region}",
                     "awslogs-create-group": "true",
                     "awslogs-stream-prefix": "ref"
                 }

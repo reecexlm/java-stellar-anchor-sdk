@@ -1,5 +1,5 @@
 variable "region" {
-  default     = "us-east-2"
+  default     = "${var.aws_region}"
   description = "AWS region"
 }
 

@@ -13,7 +13,7 @@ resource "aws_ecs_task_definition" "ref" {
 
   container_definitions = jsonencode([{
    name        = "${var.environment}-ref-config"
-   image       = "245943599471.dkr.ecr.us-east-2.amazonaws.com/anchor-platform-config:latest"
+   image       = "${aws_ecr_repository.anchor_config.repository_url}:latest"
    entryPoint  = ["/copy_config.sh"]
    
    essential   = false
@@ -28,14 +28,14 @@ resource "aws_ecs_task_definition" "ref" {
                 "logDriver": "awslogs",
                 "options": {
                     "awslogs-group": "anchor-platform",
-                    "awslogs-region": "us-east-2",
+                    "awslogs-region": "{$var.aws_region}",
                     "awslogs-create-group": "true",
                     "awslogs-stream-prefix": "sep"
                 }
             }
   },{
    name        = "${var.environment}-ref"
-   image       = "245943599471.dkr.ecr.us-east-2.amazonaws.com/anchorplatform:latest"
+   image       = "${aws_ecr_repository.anchor_config.repository_url}:latest"
    entryPoint = ["/config/ref.sh"]
    dependsOn =  [ {
      containerName = "${var.environment}-ref-config"
@@ -53,17 +53,13 @@ resource "aws_ecs_task_definition" "ref" {
               {
                   "name": "REFERENCE_SERVER_CONFIG_ENV",
                   "value": "file:/anchor_config/reference_config.yaml"
-              },
-              {   
-                  "name": "TEST3",
-                  "value": "TEST3"
               }
           ],
     logConfiguration = {
                 "logDriver": "awslogs",
                 "options": {
                     "awslogs-group": "anchor-platform",
-                    "awslogs-region": "us-east-2",
+                    "awslogs-region": "${var.aws_region}",
                     "awslogs-create-group": "true",
                     "awslogs-stream-prefix": "ref"
                 }

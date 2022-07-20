@@ -1,7 +1,7 @@
 
 locals {
   subnet_arns = formatlist(
-                    "arn:aws:ec2:us-east-2:245943599471:subnet/%s",
+                    "arn:aws:ec2:${var.aws_region}:${var.aws_account}:subnet/%s",
                     module.vpc.private_subnets
                 )
 }
@@ -143,7 +143,7 @@ resource "aws_iam_role_policy" "codebuild_policy" {
                   "ec2:CreateNetworkInterfacePermission"
                 ],
                 "Resource": [
-                  "arn:aws:ec2:us-east-2:245943599471:network-interface/*"
+                  "arn:aws:ec2:${var.aws_region}:${var.aws_account}:network-interface/*"
                 ],
                 "Condition": {
                   "StringEquals": {
@@ -176,7 +176,7 @@ resource "aws_iam_role_policy" "codebuild_policy" {
                     "codebuild:BatchPutCodeCoverages"
                 ],
                 "Resource": [
-                    "arn:aws:codebuild:us-east-2:245943599471:report-group/${var.environment}-anchor-config"
+                    "arn:aws:codebuild:${var.aws_region}:${var.aws_account}:report-group/${var.environment}-anchor-config"
                 ]
             }
         ]
