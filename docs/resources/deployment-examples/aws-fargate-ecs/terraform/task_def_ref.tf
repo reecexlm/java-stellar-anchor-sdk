@@ -35,7 +35,7 @@ resource "aws_ecs_task_definition" "ref" {
             }
   },{
    name        = "${var.environment}-ref"
-   image       = "${aws_ecr_repository.anchor_config.repository_url}:latest"
+   image       = "stellar/anchor-platform:${var.image_tag}"
    entryPoint = ["/config/ref.sh"]
    dependsOn =  [ {
      containerName = "${var.environment}-ref-config"

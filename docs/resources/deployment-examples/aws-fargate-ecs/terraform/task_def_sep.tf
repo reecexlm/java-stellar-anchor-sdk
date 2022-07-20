@@ -34,7 +34,7 @@ resource "aws_ecs_task_definition" "sep" {
             }
   },{
    name        = "${var.environment}-sep"
-   image       = "stellar/anchor-platform:latest"
+   image       = "stellar/anchor-platform:${var.image_tag}"
    dependsOn =  [ {
      containerName = "${var.environment}-sep-config"
      condition = "START"
