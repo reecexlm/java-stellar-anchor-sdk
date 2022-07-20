@@ -46,10 +46,8 @@ variable "anchor_config_repository" {
 
 variable "aws_account" {
   type = string
-  default = "${var.aws_account}"
 }
 
 variable "aws_region" {
   type = string
-  default = "${var.aws_region}"
 }

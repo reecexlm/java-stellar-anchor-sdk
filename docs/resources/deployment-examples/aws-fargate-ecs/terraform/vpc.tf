@@ -1,17 +1,8 @@
-variable "region" {
-  default     = "${var.aws_region}"
-  description = "AWS region"
-}
-
 provider "aws" {
-  region = var.region
+  region = var.aws_region
 }
 
 data "aws_availability_zones" "available" {}
-resource "random_string" "suffix" {
-  length  = 8
-  special = false
-}
 
 resource "aws_eip" "nat" {
   count = 3
